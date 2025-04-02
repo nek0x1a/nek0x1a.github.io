@@ -1,41 +1,32 @@
-# Website
+# Docusaurus Template
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+![DocusaurusLogo](https://docusaurus.io/img/docusaurus_keytar.svg)
 
-### Installation
+基于 Docusaurus 的样板工程。
 
-```
-$ yarn
-```
+## 使用
 
-### Local Development
+下载或克隆本仓库：
 
-```
-$ yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
-
-```
-$ yarn build
+```bash
+git clone -b template --depth 1 https://github.com/nek0x1a/nek0x1a.github.io.git website
+cd website
+git checkout -b main
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+链接自己的仓库地址：
 
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
+```bash
+git remote set-url origin ${自己的仓库地址}
+git push --set-upstream origin main
 ```
 
-Not using SSH:
+## 预览
 
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
+```bash
+yarn start
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+## 文档
+
+在 **[此处](guide/index.md)** 或通过预览文档中的 `guide` 文档查看。

@@ -1,0 +1,51 @@
+name: 部署到 GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: 部署 Docusaurus
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: yarn
+
+      - name: 安装依赖
+        run: yarn install --frozen-lockfile
+      - name: 构建页面
+        run: yarn build
+
+      - name: 上传构建文件
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    name: 部署到 GitHub Pages
+    needs: build
+
+    # 需要对 GITHUB_TOKEN 授予进行 Pages 部署所需的权限
+    permissions:
+      # 用于部署页面
+      pages: write
+      # 验证部署是否来自正确来源
+      id-token: write
+
+    # github-pages 环境
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: 部署
+        id: deployment
+        uses: actions/deploy-pages@v4

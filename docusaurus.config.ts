@@ -1,141 +1,127 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
-import type * as Preset from '@docusaurus/preset-classic';
+import { themes as prismThemes } from "prism-react-renderer";
+import type { Config } from "@docusaurus/types";
+import type * as Preset from "@docusaurus/preset-classic";
 
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
+// 这些将在 Node.js 中运行
+// 此处不要使用客户端代码 (浏览器 API, JSX ...)
 
 const config: Config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+  title: "猫的笔记本",
+  tagline: "这是猫的笔记本",
+  favicon: "img/favicon.ico",
 
-  // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  // 设置生产环境地址
+  url: "https://nek0x1a.github.io",
+  // 设置站点根目录所在所在的路径
+  // 对于 GitHub pages 部署，通常为 "/<projectName>/"
+  baseUrl: "/",
+  // GitHub Pages 默认为 Docusaurus URL 添加尾部斜杠。
+  // 建议设置此项不为 undefined
+  trailingSlash: true,
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  // GitHub pages 部署设置
+  // 如果不使用 GitHub pages，则不需要这部分
+  // GitHub 组织名/用户名
+  organizationName: "nek0x1a",
+  // GitHub 仓库名
+  projectName: "nek0x1a.github.io",
+  // 部署的 Branch
+  // deploymentBranch: "gh-pages",
 
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
+  // 即使您不使用国际化，也可以使用此字段设置有用的元数据，例如 html 中的 lang
+  // 如果网站是中文的，此处应设置 "zh-Hans"
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en'],
+    defaultLocale: "zh-Hans",
+    locales: ["zh-Hans"],
   },
+
+  markdown: {
+    // format: "detect",
+    mermaid: true,
+  },
+
+  themes: ["@docusaurus/theme-mermaid"],
 
   presets: [
     [
-      'classic',
+      "classic",
       {
         docs: {
-          sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          id: "default",
+          sidebarPath: "./sidebars.ts",
         },
         blog: {
+          id: "default",
           showReadingTime: true,
+          blogSidebarTitle: "最近文章",
           feedOptions: {
-            type: ['rss', 'atom'],
+            type: ["rss", "atom"],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: "./src/css/custom.css",
         },
       } satisfies Preset.Options,
     ],
   ],
 
+  plugins: [
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "guide",
+        path: "guide",
+        routeBasePath: "guide",
+        sidebarPath: "./sidebars.ts",
+      },
+    ],
+  ],
+
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: "猫的笔记本",
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        alt: "SiteLogo",
+        src: "img/logo.svg",
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Tutorial',
+          type: "docSidebar",
+          docsPluginId: "guide",
+          sidebarId: "docSidebar",
+          position: "left",
+          label: "向导",
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
-          position: 'right',
+          type: "docSidebar",
+          docsPluginId: "default",
+          sidebarId: "docSidebar",
+          position: "left",
+          label: "文档",
+        },
+        { to: "/blog", position: "left", label: "博客" },
+        {
+          href: "https://github.com/nek0x1a",
+          position: "right",
+          label: "GitHub",
         },
       ],
     },
     footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/intro',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      style: "dark",
+      copyright: `Copyright © ${new Date().getFullYear()} nek0x1a | 猫 ♥ 喵`,
     },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+      additionalLanguages: ["bash", "powershell"],
+    },
+    mermaid: {
+      theme: { light: "neutral", dark: "dark" },
     },
   } satisfies Preset.ThemeConfig,
 };

@@ -4,20 +4,57 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
+  width: 100%;
   text-align: center;
   position: relative;
   overflow: hidden;
+  background-image: url("/img/wave.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+.heroTitle {
+  color: #eee;
+  text-shadow: 0.1rem 0.1rem 0.8rem #111;
+}
+.entrance {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
+.mainContainer {
+  width: 95%;
+  max-width: 1600px;
+  margin: 4vw auto;
+  display: flex;
+  /* flex-wrap: wrap; */
+  gap: 1rem;
+}
+@media screen and (min-width: 961px) {
+  .mainContainer {
+    width: 90%;
+  }
+}
+@media screen and (min-width: 1281px) {
+  .mainContainer {
+    width: 85%;
   }
 }
 
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.authorCard {
+  width: 16rem;
+  min-width: 8rem;
+  max-width: 18rem;
+  flex: 1 1 auto;
+}
+.introCard {
+  min-width: 18rem;
+  flex: 1 1 auto;
+}
+
+.inlineIcon {
+  vertical-align: bottom;
+  margin: 0 0.25rem;
 }
