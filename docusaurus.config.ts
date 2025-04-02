@@ -69,18 +69,6 @@ const config: Config = {
     ],
   ],
 
-  plugins: [
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "guide",
-        path: "guide",
-        routeBasePath: "guide",
-        sidebarPath: "./sidebars.ts",
-      },
-    ],
-  ],
-
   themeConfig: {
     navbar: {
       title: "猫的笔记本",
@@ -89,13 +77,6 @@ const config: Config = {
         src: "img/logo.svg",
       },
       items: [
-        {
-          type: "docSidebar",
-          docsPluginId: "guide",
-          sidebarId: "docSidebar",
-          position: "left",
-          label: "向导",
-        },
         {
           type: "docSidebar",
           docsPluginId: "default",
