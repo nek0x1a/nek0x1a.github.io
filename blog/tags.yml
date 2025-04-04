@@ -7,3 +7,13 @@ acg:
   label: ACG
   permalink: /acg
   description: 动画、漫画与游戏
+
+tech:
+  label: 科技
+  permalink: /tech
+  description: 科学技术
+
+ai:
+  label: ai
+  permalink: /ai
+  description: 人工智能
