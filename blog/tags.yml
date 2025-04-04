@@ -2,3 +2,8 @@ blog:
   label: 博客
   permalink: /blog
   description: 博客相关
+
+acg:
+  label: ACG
+  permalink: /acg
+  description: 动画、漫画与游戏
