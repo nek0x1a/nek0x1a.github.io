@@ -2,11 +2,13 @@
 sidebar_position: 5
 ---
 
-# 组件库
+# Markdown 基础样式
 
-Docusaurus 支持 MDX 文档，这极大提升了编写 Markdown 的自由。
+本页面将展示常用的 Markdown 基础样式，详情也可查看 **[此文档](https://markdown.com.cn/)**。
 
-本页面将展示常用的模块，也可查看 **[官方文档](https://docusaurus.io/docs/markdown-features)**。
+:::warning
+本页面的部分内容虽然没有使用 React 组件，但也用到了 MDX 的特性，如 Html 标签内的 Markdown，因此无法当作普通 Markdown 文档。
+:::
 
 ## Markdown 基础组件
 
@@ -98,32 +100,3 @@ console.log("可以嵌套使用 Markdown 语法");
 ### 按键
 
 记得 <kbd>Ctrl</kbd> + <kbd>S</kbd> 保存
-
-## Jsx 组件
-
-以 `export`、`import` 开头的段落才会被解析为 Jsx 代码，而不是散文。
-
-`@site` 别名将指向开发目录（通常是 `docusaurus.config.js` 文件所在的位置）。
-
-### SVG 图标
-
-import ArchIcon from "@site/src/icons/ArchLinux.svg";
-
-<ArchIcon />
-
-### 标签
-
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
-
-<Tabs groupId="fruits">
-  <TabItem value="apple" label="苹果" default>
-    🍎
-  </TabItem>
-  <TabItem value="orange" label="橘子">
-    🍊
-  </TabItem>
-  <TabItem value="banana" label="香蕉">
-    🍌
-  </TabItem>
-</Tabs>

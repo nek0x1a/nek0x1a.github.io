@@ -1,0 +1,32 @@
+{
+  // 使用 IntelliSense 了解相关属性。
+  // 悬停以查看现有属性的描述。
+  // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "本地调试",
+      "command": "yarn start",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "name": "打包",
+      "command": "yarn build",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "name": "清理",
+      "command": "yarn clear",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "name": "部署",
+      "command": "yarn deploy",
+      "request": "launch",
+      "type": "node-terminal"
+    }
+  ]
+}

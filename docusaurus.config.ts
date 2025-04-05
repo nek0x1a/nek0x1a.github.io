@@ -69,6 +69,8 @@ const config: Config = {
     ],
   ],
 
+  plugins: [["./src/plugins/tailwind-config.js", {}]],
+
   themeConfig: {
     navbar: {
       title: "猫的笔记本",

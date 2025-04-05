@@ -4,42 +4,40 @@ import Link from "@docusaurus/Link";
 import Layout from "@theme/Layout";
 import Heading from "@theme/Heading";
 
-import styles from "./index.module.css";
-
-import WinIcon from "@site/src/icons/Windows11.svg";
-import ArchIcon from "@site/src/icons/ArchLinux.svg";
-import DebianIcon from "@site/src/icons/Debian.svg";
-import TsIcon from "@site/src/icons/Typescript.svg";
-import PostgreIcon from "@site/src/icons/PostgreSQL.svg";
-import ReactIcon from "@site/src/icons/React.svg";
-import NextjsIcon from "@site/src/icons/Nextjs.svg";
-import GraphqlIcon from "@site/src/icons/Graphql.svg";
-import RustIcon from "@site/src/icons/Rust.svg";
-import PythonIcon from "@site/src/icons/Python.svg";
+import {
+  SiArchlinux,
+  SiDebian,
+  SiReact,
+  SiTypescript,
+  SiNextdotjs,
+  SiRust,
+  SiPython,
+  SiGraphql,
+  SiPostgresql,
+} from "@icons-pack/react-simple-icons";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={`hero hero--primary ${styles.heroBanner}`}>
-      <div className="container">
-        <Heading
-          as="h1"
-          className={`hero__title text--bold ${styles.heroTitle}`}
-        >
-          <span className={styles.titleCursor}>{siteConfig.title}</span>
+    <header className="w-full justify-center content-center text-center bg-[url(/img/wave.jpg)] bg-center bg-cover bg-fixed">
+      <div className="w-full my-32">
+        <Heading as="h1" className="hero__title  text-shadow-lg">
+          <span className="text-slate-50 dark:text-slate-200">
+            {siteConfig.title}
+          </span>
         </Heading>
-        <p className={`hero__subtitle ${styles.heroTitle}`}>
+        <p className="text-2xl text-slate-50 text-shadow-lg">
           {siteConfig.tagline}
           <br />
           猫猫要把所有美好的事物都记录下来
         </p>
-        <div className={styles.entrance}>
-          <div className={styles.entranceItem}>
+        <div className="flex gap-16 mt-16 content-center justify-center">
+          <div className="flex-none">
             <Link className="button button--secondary button--lg" to="/docs/">
               文档
             </Link>
           </div>
-          <div className={styles.entranceItem}>
+          <div className="flex-none">
             <Link className="button button--secondary button--lg" to="/blog">
               博客
             </Link>
@@ -69,8 +67,8 @@ export default function Home() {
     >
       <HomepageHeader />
       <main>
-        <div className={styles.mainContainer}>
-          <div className={`${styles.authorCard}`}>
+        <div className="flex gap-8 w-[90%] max-w-7xl mx-auto my-[4vw]">
+          <div className="w-64 min-w-32 max-w-72 flex-auto">
             <div className="card shadow--md">
               <div className="card__image margin--lg">
                 <img
@@ -85,37 +83,82 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className={`${styles.introCard}`}>
+          <div className="flex-auto">
             <div className="card shadow--md">
               <div className="card__body">
                 <h2>
                   Hello! {emojis[Math.floor(Math.random() * emojis.length)]}
                 </h2>
-                <p>这里是猫猫。</p>
-                <p>
-                  常用系统：
-                  <WinIcon className={styles.inlineIcon} />
-                  <ArchIcon className={styles.inlineIcon} />
-                  <DebianIcon className={styles.inlineIcon} />
-                </p>
-                <p>
-                  前端喜欢用这些：
-                  <TsIcon className={styles.inlineIcon} />
-                  <ReactIcon className={styles.inlineIcon} />
-                  <NextjsIcon className={styles.inlineIcon} />
-                </p>
-                <p>
-                  后端用这些：
-                  <NextjsIcon className={styles.inlineIcon} />
-                  <RustIcon className={styles.inlineIcon} />
-                  <PythonIcon className={styles.inlineIcon} />
-                </p>
-                <p>
-                  数据库用这些：
-                  <GraphqlIcon className={styles.inlineIcon} />
-                  <PostgreIcon className={styles.inlineIcon} />
-                </p>
-                <p>喜欢新技术，偶尔写一些小玩具。</p>
+                <p>什么都会点，喜欢新技术，偶尔写一些小玩具。</p>
+                <h3>使用系统</h3>
+                <div className="flex gap-8 mb-4">
+                  <SiArchlinux
+                    className="flex-none"
+                    title="ArchLinux"
+                    color="#1793D1"
+                    size={42}
+                  />
+                  <SiDebian
+                    className="flex-none"
+                    title="Debian"
+                    color="#A81D33"
+                    size={42}
+                  />
+                </div>
+                <h3>前端工具链</h3>
+                <div className="flex gap-8 mb-4">
+                  <SiTypescript
+                    className="flex-none"
+                    title="Typescript"
+                    color="#3178C6"
+                    size={42}
+                  />
+                  <SiReact
+                    className="flex-none"
+                    title="React"
+                    color="#61DAFB"
+                    size={42}
+                  />
+                  <SiNextdotjs
+                    className="flex-none text-current"
+                    title="NextJs"
+                    size={42}
+                  />
+                </div>
+                <h3>后端语言</h3>
+                <div className="flex gap-8 mb-4">
+                  <SiNextdotjs
+                    className="flex-none text-current"
+                    title="NextJs"
+                    size={42}
+                  />
+                  <SiRust
+                    className="flex-none text-current"
+                    title="Rust"
+                    size={42}
+                  />
+                  <SiPython
+                    className="flex-none"
+                    title="Python"
+                    color="#3776AB"
+                    size={42}
+                  />
+                </div>
+                <h3>数据库</h3>
+                <div className="flex gap-8 mb-4">
+                  <SiGraphql
+                    className="flex-none"
+                    title="GraphQL"
+                    color="#E10098"
+                    size={42}
+                  />
+                  <SiPostgresql
+                    className="flex-none"
+                    title="Postgresql"
+                    color="#4169E1"
+                    size={42}
+                  />
+                </div>
               </div>
             </div>
           </div>
