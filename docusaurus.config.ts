@@ -79,6 +79,7 @@ const config: Config = {
         sidebarPath: "./sidebars.ts",
       },
     ],
+    ["./src/plugins/tailwind-config.js", {}],
   ],
 
   themeConfig: {
