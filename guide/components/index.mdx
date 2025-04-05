@@ -1,0 +1,53 @@
+---
+sidebar_position: 6
+---
+
+# 组件库
+
+Docusaurus 支持 MDX 文档，这极大提升了编写 Markdown 的自由。
+
+本页面将展示常用的模块，也可查看 **[官方文档](https://docusaurus.io/docs/markdown-features)**。
+
+以 Html/React 标签或 `import`/`export` 开头的段落会被解析为 Jsx 代码，而不是 Markdown 段落。
+
+任何非以其他字符（空格将会被忽略）开头的行均会被解析成 Markdown 段落，哪怕是在 Html 标签中间。
+所以 MDX 的 Jsx 代码需简洁，或使用额外的 jsx 文件编辑并导入。
+
+:::tip
+`@site` 别名将指向开发目录（通常是 `docusaurus.config.js` 文件所在的位置）。
+:::
+
+### SVG 图标
+
+import { SiMdx } from "@icons-pack/react-simple-icons";
+
+<SiMdx className="text-current" title="React" size={42} />
+
+### 按钮
+
+import ButtonGallery from "./ButtonGallery";
+
+<ButtonGallery />
+
+### 徽标
+
+import BadgeGallery from "./BadgeGallery";
+
+<BadgeGallery />
+
+### 标签
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs groupId="fruits">
+  <TabItem value="apple" label="苹果" default>
+    🍎
+  </TabItem>
+  <TabItem value="orange" label="橘子">
+    🍊
+  </TabItem>
+  <TabItem value="banana" label="香蕉">
+    🍌
+  </TabItem>
+</Tabs>
