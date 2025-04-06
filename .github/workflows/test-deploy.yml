@@ -1,13 +1,16 @@
-name: 部署测试
+name: 测试编译
 
 on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - template
 
 jobs:
   test-deploy:
-    name: 部署测试
+    name: 测试编译
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,5 +23,5 @@ jobs:
 
       - name: 安装依赖
         run: yarn install --frozen-lockfile
-      - name: 测试编译
+      - name: 编译
         run: yarn build
