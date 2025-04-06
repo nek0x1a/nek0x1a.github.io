@@ -1,2 +1,2 @@
-import eslintConfigPrettier from "eslint-config-prettier/flat";
-export default [eslintConfigPrettier];
+const eslintConfigPrettier = require("eslint-config-prettier/flat");
+module.exports = [eslintConfigPrettier];
