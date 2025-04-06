@@ -1,21 +1,20 @@
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { useEffect, useState } from "react";
 
 import Link from "@docusaurus/Link";
-import Layout from "@theme/Layout";
-import Heading from "@theme/Heading";
-
 import {
   SiArchlinux,
   SiDebian,
-  SiReact,
-  SiTypescript,
-  SiNextdotjs,
-  SiRust,
-  SiPython,
   SiGraphql,
+  SiNextdotjs,
   SiPostgresql,
+  SiPython,
+  SiReact,
+  SiRust,
+  SiTypescript,
 } from "@icons-pack/react-simple-icons";
-import { useEffect, useState } from "react";
+import Heading from "@theme/Heading";
+import Layout from "@theme/Layout";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -51,6 +50,18 @@ function HomepageHeader() {
 
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
+  const emojis = [
+    "～(∠・ω< )⌒★",
+    "(*´∀`)~♥",
+    "ᕕ ( ᐛ ) ᕗ",
+    "_(:3 ⌒ﾞ)_",
+    "(σﾟ∀ﾟ)σ..:*☆",
+  ];
+  const [emoji, setEmoji] = useState("");
+  useEffect(() => {
+    setEmoji(emojis[Math.floor(Math.random() * emojis.length)]);
+  }, []);
+
   return (
     <Layout
       // 标题，将会放置于 head 标签中
@@ -79,7 +90,7 @@ export default function Home() {
           <div className="flex-auto">
             <div className="card shadow--md">
               <div className="card__body">
-                <h2>{"Ciallo～(∠・ω< )⌒★"}</h2>
+                <h2> Ciallo {emoji} </h2>
                 <p>什么都会点，喜欢新技术，偶尔写一些小玩具。</p>
                 <h3>使用系统</h3>
                 <div className="flex gap-8 mb-4">
