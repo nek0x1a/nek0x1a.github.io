@@ -17,3 +17,13 @@ ai:
   label: ai
   permalink: /ai
   description: 人工智能
+
+windows:
+  label: windows
+  permalink: /windows
+  description: 微软 Windows 系列
+
+linux:
+  label: linux
+  permalink: /lunix
+  description: Unix/linux 发行版
