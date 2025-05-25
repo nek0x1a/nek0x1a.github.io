@@ -12,7 +12,7 @@ description: 优秀 Docker 镜像推荐
 | 00   | portainer | flare        | memos           | autobangumi  |               | ittools    |
 | 01   | kuma      | vaultwarden  | freshrss        | ariang       | bitmagnet     | drawdb     |
 | 02   | gotify    | adminer      | dufs-public     | qbittorrent  | bitmagnet-web | jsoncrack  |
-| 03   |           | flaresolverr | dufs-downlloads | baidunetdisk |               | plantuml   |
+| 03   |           | flaresolverr | dufs-downlloads | baidunetdisk | LibreTV       | plantuml   |
 | 04   |           | rsshub       | dufs-book       | baidunetdisk |               | picsmaller |
 | 05   |           | graphql      | piwigo          | alist        |               | webp2jpg   |
 | 06   |           |              | navidrome       |              |               |            |

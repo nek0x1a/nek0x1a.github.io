@@ -63,13 +63,13 @@ systemctl restart pvedaemon
 
 ```diff title="/etc/default/grub" {2}
 # GRUB_CMDLINE_LINUX_DEFAULT="quiet"
-GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt pcie_acs_override=downstream,multifunction"
 ```
 
 更新一下 Grub 的配置：
 
 ```shell
-update-grub
+proxmox-boot-tool refresh
 ```
 
 加载内核模块，编辑 `vim /etc/modules` 文件，添加下列内容：
