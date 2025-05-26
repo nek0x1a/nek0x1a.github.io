@@ -32,10 +32,10 @@ const config: Config = {
   onBrokenMarkdownLinks: "warn",
 
   // 即使您不使用国际化，也可以使用此字段设置有用的元数据，例如 html 中的 lang
-  // 如果网站是中文的，此处应设置 "zh-Hans"
+  // 如果网站是中文的，此处应设置 "cmn-Hans-CN"
   i18n: {
-    defaultLocale: "zh-Hans",
-    locales: ["zh-Hans"],
+    defaultLocale: "cmn-Hans-CN",
+    locales: ["cmn-Hans-CN"],
   },
 
   markdown: {
