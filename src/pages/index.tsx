@@ -62,17 +62,19 @@ export default function Home() {
     setEmoji(emojis[Math.floor(Math.random() * emojis.length)]);
   }, []);
 
+  const iconSize = 42;
+
   return (
     <Layout
       // 标题，将会放置于 head 标签中
-      // title={siteConfig.title}
+      title="首页"
       // 描述，将会放置于 head 标签中
       description={siteConfig.tagline}
     >
       <HomepageHeader />
       <main>
-        <div className="flex gap-8 w-[90%] max-w-7xl mx-auto my-[4vw]">
-          <div className="w-64 min-w-32 max-w-72 flex-auto">
+        <div className="page-container flex gap-2 md:gap-4 lg:gap-6 xl:gap-8 my-[4vw]">
+          <div className="w-72 flex-initial">
             <div className="card shadow--md">
               <div className="card__image margin--lg">
                 <img
@@ -87,7 +89,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex-auto">
+          <div className="w-128 flex-auto">
             <div className="card shadow--md">
               <div className="card__body">
                 <h2> Ciallo {emoji} </h2>
@@ -96,69 +98,56 @@ export default function Home() {
                 <div className="flex gap-8 mb-4">
                   <SiArchlinux
                     className="flex-none"
-                    title="ArchLinux"
                     color="#1793D1"
-                    size={42}
+                    size={iconSize}
                   />
                   <SiDebian
                     className="flex-none"
-                    title="Debian"
                     color="#A81D33"
-                    size={42}
+                    size={iconSize}
                   />
                 </div>
                 <h3>前端工具链</h3>
                 <div className="flex gap-8 mb-4">
                   <SiTypescript
                     className="flex-none"
-                    title="Typescript"
                     color="#3178C6"
-                    size={42}
+                    size={iconSize}
                   />
                   <SiReact
                     className="flex-none"
-                    title="React"
                     color="#61DAFB"
-                    size={42}
+                    size={iconSize}
                   />
                   <SiNextdotjs
                     className="flex-none text-current"
-                    title="NextJs"
-                    size={42}
+                    size={iconSize}
                   />
                 </div>
                 <h3>后端语言</h3>
                 <div className="flex gap-8 mb-4">
                   <SiNextdotjs
                     className="flex-none text-current"
-                    title="NextJs"
-                    size={42}
+                    size={iconSize}
                   />
-                  <SiRust
-                    className="flex-none text-current"
-                    title="Rust"
-                    size={42}
-                  />
+                  <SiRust className="flex-none text-current" size={iconSize} />
                   <SiPython
                     className="flex-none"
-                    title="Python"
                     color="#3776AB"
-                    size={42}
+                    size={iconSize}
                   />
                 </div>
                 <h3>数据库</h3>
                 <div className="flex gap-8 mb-4">
                   <SiGraphql
                     className="flex-none"
-                    title="GraphQL"
                     color="#E10098"
-                    size={42}
+                    size={iconSize}
                   />
                   <SiPostgresql
                     className="flex-none"
-                    title="Postgresql"
                     color="#4169E1"
-                    size={42}
+                    size={iconSize}
                   />
                 </div>
               </div>

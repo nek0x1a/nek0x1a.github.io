@@ -16,27 +16,23 @@
 
 /* 可以在此处覆盖默认的 Infima 变量 */
 :root {
-  /* --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%; */
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-font-family-monospace:
-    "Maple Mono NF CN", SFMono-Regular, Consolas, "Courier New", monospace;
+    "Maple Mono NF CN", monospace, "Apple Color Emoji", "Noto Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol";
+  --ifm-font-family-base:
+    system-ui, -apple-system, sans-serif, "Apple Color Emoji",
+    "Noto Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 /* 出于可读性考虑，应该在暗模式下选择较浅的调色板 */
 [data-theme="dark"] {
-  /* --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf; */
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* 响应式页面宽度调整 */
+.page-container {
+  @apply w-[95%] md:w-[91%] lg:w-[88%] xl:w-[86%] 2xl:w-[85%];
+  @apply md:min-w-[45.6rem] lg:min-w-[58.24rem] xl:min-w-[70.4rem] 2xl:min-w-[82.56rem] 2xl:max-w-[96rem];
+  @apply mx-auto;
 }
