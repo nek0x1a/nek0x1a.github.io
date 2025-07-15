@@ -1,0 +1,95 @@
+name: 部署到 GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    name: 构建站点
+    runs-on: ubuntu-latest
+    env:
+      DART_SASS_VERSION: 1.89.2
+      HUGO_VERSION: 0.148.0
+      HUGO_ENVIRONMENT: production
+      TZ: Aisa/Sahnghai
+
+    steps:
+      - name: 安装 Hugo CLI
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb
+          sudo dpkg -i ${{ runner.temp }}/hugo.deb
+      - name: 安装 Dart Sass
+        run: |
+          wget -O ${{ runner.temp }}/dart-sass.tar.gz https://github.com/sass/dart-sass/releases/download/${DART_SASS_VERSION}/dart-sass-${DART_SASS_VERSION}-linux-x64.tar.gz
+          tar -xf ${{ runner.temp }}/dart-sass.tar.gz --directory ${{ runner.temp }}
+          mv ${{ runner.temp }}/dart-sass/ /usr/local/bin
+          echo "/usr/local/bin/dart-sass" >> $GITHUB_PATH
+
+      - name: 克隆仓库
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: 配置 Pages
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: 恢复缓存
+        id: cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            ${{ runner.temp }}/hugo_cache
+          key: hugo-${{ github.run_id }}
+          restore-keys:
+            hugo-
+      - name: 配置 Git
+        run: git config core.quotepath false
+
+      - name: 构建页面
+        run: |
+          hugo --gc --minify \
+            --baseURL "${{ steps.pages.outputs.base_url }}/" \
+            --cacheDir "${{ runner.temp }}/hugo_cache"
+      - name: 保存缓存
+        id: cache-save
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ${{ runner.temp }}/hugo_cache
+          key: ${{ steps.cache-restore.outputs.cache-primary-key }}
+
+      - name: 上传构建文件
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+  deploy:
+    name: 部署
+    needs: build
+    runs-on: ubuntu-latest
+
+    # github-pages 环境
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: 部署到 GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
