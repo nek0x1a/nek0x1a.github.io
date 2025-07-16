@@ -1,0 +1,43 @@
+{
+  "name": "猫猫笔记",
+  "short_name": "猫猫笔记",
+  "description": "这是猫猫的笔记本",
+  "start_url": "/",
+  "lang": "zh-CN",
+  "background_color": "#252627",
+  "theme_color": "#292A2E",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/icons/logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/logo-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/logo-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/logo-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}

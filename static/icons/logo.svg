@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="a" data-name="图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <style>
+      .a {
+        fill: #d3d8dd;
+        stroke: #444b54;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 4;
+      }
+      .b {
+        fill: #444b54;
+      }
+    </style>
+  </defs>
+  <polyline class="a" points="31.3 46.6 42 26.6 52.7 46.6"/>
+  <polyline class="a" points="96.7 46.6 86 26.6 75.3 46.6"/>
+  <rect class="a" x="21" y="47.8" width="86" height="51.6" rx="6" ry="6"/>
+  <circle class="b" cx="46" cy="68" r="4"/>
+  <circle class="b" cx="82" cy="68" r="4"/>
+</svg>
