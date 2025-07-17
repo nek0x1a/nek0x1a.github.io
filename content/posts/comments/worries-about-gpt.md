@@ -2,7 +2,7 @@
 title: 对 GPT 模型滥用的担忧
 date: 2024-04-14
 description: 
-categories: [comments]
+categories: [聊一聊]
 tags: [AI]
 ---
 

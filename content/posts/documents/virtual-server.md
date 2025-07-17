@@ -2,8 +2,8 @@
 title: 搭建 Debian 虚拟服务器
 date: 2023-04-15
 modified: 2025-07-14
-categories: [documents]
-collections: [homelab]
+categories: [文档]
+collections: [Homelab]
 tags: [ProxmoxVE, Linux, Server, Debian]
 expirationReminder:
   enable: true

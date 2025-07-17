@@ -1,9 +1,9 @@
 ---
 title: 数据库中的 join 操作
 date: 2022-04-02
-categories: [documents]
-collections: [database]
-tags: [数据库, SQL]
+categories: [文档]
+collections: [数据库]
+tags: [SQL]
 expirationReminder:
   enable: true
 ---

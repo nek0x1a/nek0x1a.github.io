@@ -1,7 +1,7 @@
 ---
 title: 你好，世界！
 date: 2025-07-11
-categories: [documents]
+categories: [文档]
 tags: [Hugo]
 expirationReminder:
   enable: true

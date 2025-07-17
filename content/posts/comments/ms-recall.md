@@ -1,7 +1,7 @@
 ---
 title: 微软搞笑 AI 应用 Recall
 date: 2024-05-27
-categories: [comments]
+categories: [聊一聊]
 tags: [Microsoft, AI]
 ---
 

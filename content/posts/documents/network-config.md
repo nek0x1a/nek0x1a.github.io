@@ -2,8 +2,8 @@
 title: 搭建基础网络环境
 date: 2022-12-15
 modified: 2025-07-13
-categories: [documents]
-collections: [homelab]
+categories: [文档]
+collections: [Homelab]
 tags: [Openwrt, VPN, Nginx]
 expirationReminder:
   enable: true

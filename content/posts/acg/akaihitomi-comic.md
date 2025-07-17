@@ -1,8 +1,8 @@
 ---
 title: 『紅い瞳に映るセカイ』发售预热漫画
 date: 2015-07-24
-categories: [acg]
-tags: [comic, F社]
+categories: [ACG]
+tags: [漫画, Favo 社]
 ---
 
 汉化了『紅い瞳に映るセカイ』发售前预热漫画。

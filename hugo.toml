@@ -228,7 +228,7 @@ pagerSize = 12
 
 [Permalinks]
   # posts = ":year/:month/:filename"
-  posts = "posts/:slugorcontentbasename"
+  posts = ":section/:slugorcontentbasename"
 
 # -------------------------------------------------------------------------------------
 # Privacy Configuration

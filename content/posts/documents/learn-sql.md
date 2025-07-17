@@ -1,9 +1,9 @@
 ---
 title: SQL 基础
 date: 2022-03-27
-categories: [documents]
-collections: [database]
-tags: [数据库, SQL]
+categories: [文档]
+collections: [数据库]
+tags: [SQL]
 expirationReminder:
   enable: true
 ---

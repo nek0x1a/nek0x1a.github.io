@@ -2,7 +2,7 @@
 title: 转向 LTSC 的原因
 date: 2024-05-12
 modified: 2025-07-15
-categories: [comments]
+categories: [聊一聊]
 tags: [Microsoft, Windows]
 ---
 

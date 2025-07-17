@@ -2,8 +2,8 @@
 title: 通过 VHDX 管理系统
 date: 2024-12-21
 modified: 2025-07-14
-categories: [documents]
-collections: [homelab]
+categories: [文档]
+collections: [Homelab]
 tags: [Hyper-V, Windows]
 expirationReminder:
   enable: true
