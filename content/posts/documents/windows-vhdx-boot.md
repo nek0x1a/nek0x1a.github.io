@@ -125,15 +125,17 @@ block-beta
 > - Microsoft.WindowsTerminal
 > - Microsoft.XNARedist
 > - Oracle.JavaRuntimeEnvironment
-> - Gyan.FFmpeg
-> - CodecGuide.K-LiteCodecPack.Full
 > - AutoHotkey.AutoHotkey
+> - CodecGuide.K-LiteCodecPack.Full
+> - zufuliu.notepad4.AVX2
+> - MacType.MacType
+> - Gyan.FFmpeg
 > - voidtools.Everything
 > - Git.Git
 > - 7zip.7zip
 > - PixPin.PixPin
 > - Flow-Launcher.Flow-Launcher
-> - zufuliu.notepad4.AVX2
+> - BluePointLilac.ContextMenuManager
 
 ### 其他绿色软件
 

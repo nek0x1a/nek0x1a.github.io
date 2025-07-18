@@ -591,6 +591,8 @@ $$e^{i\theta} = \cos(\theta) + i\sin(\theta)$$
 :(fa-regular fa-heart):
 :(fa-regular fa-circle-user):
 
+图标在此处搜索：[fontawesome](https://fontawesome.com/icons/)
+
 ## Shortcode
 
 ### 图表
