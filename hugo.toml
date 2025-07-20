@@ -25,9 +25,9 @@ languageName = "简体中文"
 # whether to include Chinese/Japanese/Korean
 hasCJKLanguage = true
 # copyright description used only for seo schema
-copyright = ""
+copyright = "copyright 猫"
 # whether to use robots.txt
-enableRobotsTXT = true
+enableRobotsTXT = false
 # whether to use git commit log
 enableGitInfo = true
 # whether to use emoji code
@@ -103,6 +103,18 @@ pagerSize = 12
     weight = 4
     [menu.main.params]
       icon = "fa-solid fa-tags"
+
+  [[menu.main]]
+    identifier = "about"
+    parent = ""
+    pre = ""
+    post = ""
+    name = "喵"
+    url = "/meow/"
+    title = ""
+    weight = 5
+    [menu.main.params]
+      icon = "fa-solid fa-heart"
 
 # -------------------------------------------------------------------------------------
 # Related content Configuration
@@ -334,18 +346,18 @@ pagerSize = 12
   # FixIt 0.2.15 | CHANGED FixIt theme version
   version = "0.3.X" # e.g. "0.2.X", "0.2.15", "v0.2.15" etc.
   # site description
-  description = ""
+  description = "这是猫猫的笔记本"
   # site keywords
-  keywords = []
+  keywords = ["笔记", "代码", "编程", "杂谈", "动漫", "游戏", "ACG"]
   # site default theme ["light", "dark", "auto"]
   defaultTheme = "auto"
   # which hash function used for SRI, when empty, no SRI is used
   # ["sha256", "sha384", "sha512", "md5"]
-  fingerprint = ""
+  fingerprint = "sha256"
   # NEW date format
   dateFormat = "2006-01-02"
   # website images for Open Graph and Twitter Cards
-  images = []
+  images = ["/static/icons/logo.svg", "/static/icons/logo-256.png"]
   # FixIt 0.2.12 | NEW enable PWA
   enablePWA = true
   # FixIt 0.2.14 | NEW whether to add external Icon for external links automatically
@@ -496,7 +508,7 @@ pagerSize = 12
     # whether to show copyright info
     copyright = true
     # whether to show the author
-    author = true
+    author = false
     # Site creation year
     since = "2015"
     # FixIt 0.2.12 | NEW Public network security only in China (HTML format is supported)
@@ -504,12 +516,12 @@ pagerSize = 12
     # ICP info only in China (HTML format is supported)
     icp = ""
     # license info (HTML format is supported)
-    license = ""
+    license = '猫 <i class="fa-solid fa-heart"></i>  喵'
     # FixIt 0.3.0 | NEW whether to show Hugo and theme info
     [params.footer.powered]
-      enable = false
-      hugoLogo = true
-      themeLogo = true
+      enable = true
+      hugoLogo = false
+      themeLogo = false
     # FixIt 0.2.17 | CHANGED Site creation time
     [params.footer.siteTime]
       enable = false
@@ -519,11 +531,11 @@ pagerSize = 12
       value = "" # e.g. "2021-12-18T16:15:22+08:00"
     # FixIt 0.2.17 | NEW footer lines order, optional values: ["first", 0, 1, 2, 3, 4, 5, "last"]
     [params.footer.order]
-      powered = 0
       copyright = 0
-      statistics = 0
-      visitor = 0
-      beian = 0
+      statistics = 1
+      visitor = 2
+      beian = 3
+      powered = 4
 
   # FixIt 0.3.0 | NEW Archives page config (all pages of posts type)
   [params.archives]
@@ -792,9 +804,9 @@ pagerSize = 12
   # Site SEO config
   [params.seo]
     # image URL
-    image = ""
+    image = "/static/icons/logo.svg"
     # thumbnail URL
-    thumbnailUrl = ""
+    thumbnailUrl = "/static/icons/logo-128.png"
 
   # Analytics config
   [params.analytics]
@@ -837,7 +849,7 @@ pagerSize = 12
 
   # Cookie consent config
   [params.cookieconsent]
-    enable = true
+    enable = false
     # text strings used for Cookie consent banner
     [params.cookieconsent.content]
       message = ""
