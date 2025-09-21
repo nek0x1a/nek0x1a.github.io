@@ -1,7 +1,7 @@
 ---
 title: 搭建 Debian 虚拟服务器
 date: 2023-04-15
-modified: 2025-07-14
+modified: 2025-09-21
 categories: [文档]
 collections: [Homelab]
 tags: [ProxmoxVE, Linux, Server, Debian]
@@ -212,19 +212,19 @@ cat /etc/group | grep video
 
 安装相关软件并挂载 NFS：
 
-```shell
+```bash
 apt install fonts-noto-cjk-extra intel-media-va-driver-non-free vainfo intel-gpu-tools
 ```
 
 检查硬解支持情况：
 
-```shell
+```bash
 vainfo
 ```
 
 ### 安装 jellyfin：
 
-```shell
+```bash
 curl https://repo.jellyfin.org/install-debuntu.sh | bash
 ```
 

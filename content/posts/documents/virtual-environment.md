@@ -26,7 +26,7 @@ expirationReminder:
 
 ### Debian 系统源
 
-```shell
+```bash
 # 更新证书及增加 apt https 支持
 apt update && apt-get install -y apt-transport-https ca-certificates  --fix-missing
 
@@ -40,7 +40,7 @@ apt update && apt dist-upgrade
 
 ### Proxmox 软件源
 
-```shell
+```bash
 # 取消企业源
 mv /etc/apt/sources.list.d/pve-enterprise.list /etc/apt/sources.list.d/pve-enterprise.list.bak
 # USTC Proxmox 软件源
@@ -49,7 +49,7 @@ echo "deb https://mirrors.ustc.edu.cn/proxmox/debian/pve bookworm pve-no-subscri
 
 ### Ceph 源
 
-```shell
+```bash
 if [ -f /etc/apt/sources.list.d/ceph.list ]; then
   CEPH_CODENAME=`ceph -v | grep ceph | awk '{print $(NF-1)}'`
   source /etc/os-release
@@ -59,7 +59,7 @@ fi
 
 ### LXC 仓库源
 
-```shell
+```bash
 # USTC LXC 仓库源
 sed -i.bak 's|http://download.proxmox.com|https://mirrors.ustc.edu.cn/proxmox|g' /usr/share/perl5/PVE/APLInfo.pm
 systemctl restart pvedaemon
@@ -76,7 +76,7 @@ systemctl restart pvedaemon
 
 更新一下 Grub 的配置：
 
-```shell
+```bash
 proxmox-boot-tool refresh
 ```
 
@@ -106,13 +106,13 @@ vfio_virqfd
 nvme 或其他走 PCI-E 通道的硬盘不建议使用这种方式，一般作为机械硬盘的直通方式。
 先使用一下命令查看硬盘名称：
 
-```shell
+```bash
 ls /dev/disk/by-id/
 ```
 
 会得到诸如 `ata-xxxx` 或 `nvme-xxxx` 形式的硬盘名称，使用以下命令将硬盘添加到虚拟机中：
 
-```shell
+```bash
 qm set ${VM_ID} -scsi1 /dev/disk/by-id/${DISK_NAME}
 ```
 
