@@ -42,23 +42,23 @@ services:
   portainer:
     image: portainer/portainer-ce
     container_name: portainer
-    restart: always
+    restart: unless-stopped
     ports:
       - 6000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./portainer:/data
+      - /container/portainer:/data
 
   vaultwarden:
     container_name: vaultwarden
     image: vaultwarden/server
     restart: unless-stopped
-    environment:
-      DOMAIN: https://password.meow
-    volumes:
-      - ./vaultwarden:/data
     ports:
       - 6001:80
+    volumes:
+      - /container/vaultwarden:/data
+    environment:
+      DOMAIN: "https://password.meow"
 
   dufs-public:
     container_name: dufs-public
@@ -69,33 +69,6 @@ services:
     volumes:
       - /nfs/public:/data
     command: /data
-```
-
-```yaml {title="Database"}
-services:
-  postgres:
-    container_name: postgres
-    image: postgres:alpine
-    restart: unless-stopped
-    ports:
-      - 5432:5432
-    volumes:
-      - ./postgresql:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-
-  mariadb:
-    container_name: mariadb
-    image: mariadb
-    restart: unless-stopped
-    ports:
-      - 3306:3306
-    volumes:
-      - ./mariadb/conf.d:/etc/mysql/conf.d
-      - ./mariadb/data:/var/lib/mysql
-      - ./mariadb/logs:/logs
-    environment:
-      - MARIADB_ROOT_PASSWORD=${MARIADB_PASSWORD}
 
   adminer:
     container_name: adminer
@@ -103,6 +76,18 @@ services:
     restart: unless-stopped
     ports:
       - 6003:8080
+
+  postgres:
+    container_name: postgres
+    image: postgres:alpine
+    restart: unless-stopped
+    user: 1000:1000
+    ports:
+      - 5432:5432
+    volumes:
+      - /container/postgresql:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD: "Ero@Postgres"
 ```
 
 ```yaml {title="Rss"}
@@ -113,6 +98,9 @@ services:
     restart: unless-stopped
     ports:
       - 6200:1200
+    environment:
+      - ALLOW_ORIGIN: "*"
+      - ALLOW_USER_HOTLINK_TEMPLATE: "image_hotlink_template"
 
   freshrss:
     container_name: freshrss
@@ -122,26 +110,31 @@ services:
       - 6201:80
     depends_on:
       - rsshub
-      - rssdb
     logging:
       options:
         max-size: 10m
     volumes:
-      - ./freshrss/data:/var/www/FreshRSS/data
-      - ./freshrss/extensions:/var/www/FreshRSS/extensions
+      - /container/freshrss:/var/www/FreshRSS
     environment:
-      TZ: Asia/Shanghai
-      CRON_MIN: "1,15,31"
-      TRUSTED_PROXY: 172.16.0.0/12 192.168.0.0/16
-
-  rssdb:
-    container_name: rss-pg
-    image: postgres:alpine
-    restart: unless-stopped
-    volumes:
-      - ./rss_pg:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      TZ: "Asia/Shanghai"
+      CRON_MIN: "1,31"
+      TRUSTED_PROXY: "172.16.0.1/12 10.0.0.0/8 192.168.0.0/16"
+      FRESHRSS_INSTALL: |-
+        --api-enabled
+        --base-url rss.meow
+        --db-base freshrss
+        --db-host 10.0.0.32
+        --db-password freshrss@Postgres
+        --db-type pgsql
+        --db-user freshrss
+        --default-user neko
+        --language zh-CN
+      FRESHRSS_USER: |-
+        --user neko
+        --api-password Ero@Freshrss
+        --email neko@meow
+        --language zh-CN
+        --password Ero@Freshrss
 ```
 
 ```yaml {title="Media"}
@@ -153,20 +146,39 @@ services:
     ports:
       - 6202:4533
     volumes:
-      - ./navidrome:/data
+      - /container/navidrome:/data
       - /nfs/music:/music:ro
     environment:
       ND_SCANSCHEDULE: 12h
       ND_LOGLEVEL: info
-      
-  memos:
-    container_name: memos
-    image: neosmemo/memos
+
+  siyuan:
+    container_name: siyuan
+    image: apkdv/siyuan-unlock
     restart: unless-stopped
-    volumes:
-      - ./memos:/var/opt/memos
     ports:
-      - 6203:5230
+      - 6203:6806
+    volumes:
+      - /container/siyuan:/siyuan/workspace
+    environment:
+      - PUID: 1000
+      - PGID: 1000
+      - LANG: zh_CN.UTF-8
+      - LC_ALL: zh_CN.UTF-8
+      - TZ: Asia/Shanghai
+      - SIYUAN_ACCESS_AUTH_CODE: Ero@Siyuan
+    command: --workspace=/siyuan/workspace/
+
+  openlist:
+    container_name: openlist
+    image: openlistteam/openlist
+    restart: unless-stopped
+    user: 1000:1000
+    volumes:
+      - /container/openlist:/opt/openlist/data
+    environment:
+      - UMASK: 022
+      - TZ: Asia/Shanghai
 ```
 
 ```yaml {title="Downloader"}
@@ -178,14 +190,14 @@ services:
     ports:
       - 6300:7892
     volumes:
-      - ./autobangumi/config:/app/config
-      - ./autobangumi/data:/app/data
+      - /container/autobangumi:/app
     depends_on:
       - qbittorrent
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Shanghai
+      - PUID: 1000
+      - PGID: 1000
+      - TZ: Asia/Shanghai
+      - UMASK: 022
 
   aria2:
     container_name: aria2
@@ -196,19 +208,19 @@ services:
       - 6888:6888
       - 6888:6888/udp
     volumes:
-      - ./aria2:/config
+      - /container/aria2:/config
       - /nfs/downloads:/downloads
     environment:
-      - PUID=1000
-      - PGID=1000
-      - UMASK_SET=022
-      - RPC_SECRET=${ARIA2_SECRET}
-      - RPC_PORT=6800
-      - LISTEN_PORT=6888
-      - DISK_CACHE=64M
-      - IPV6_MODE=true
-      - UPDATE_TRACKERS=true
-      - TZ=Asia/Shanghai
+      - PUID: 1000
+      - PGID: 1000
+      - UMASK_SET: 022
+      - RPC_SECRET: 123456
+      - RPC_PORT: 6800
+      - LISTEN_PORT: 6888
+      - DISK_CACHE: 64M
+      - IPV6_MODE: true
+      - UPDATE_TRACKERS: true
+      - TZ: Asia/Shanghai
     logging:
       driver: json-file
       options:
@@ -230,22 +242,22 @@ services:
 
   qbittorrent:
     container_name: qbittorrent
-    image: p3terx/qbittorrent-enhanced
+    image: johngong/qbittorrent
     restart: unless-stopped
     ports:
-      - 6302:28080
-      - 26888:26888
-      - 26888:26888/udp
+      - 6302:8989
+      - 6881:6881
+      - 6881:6881/udp
     volumes:
-      - ./qbittorrent:/qBittorrent
-      - /nfs/downloads:/downloads
-      - /nfs/bangumi:/bangumi
+      - /container/qbittorrent:/config
+      - /nfs/downloads:/Downloads
+      - /nfs/bangumi:/Bangumi
     environment:
-      - PUID=1000
-      - PGID=1000
-      - UMASK_SET=022
-      - TZ=Asia/Shanghai
-      - QBT_WEBUI_PORT=28080
+      - UID: 1000
+      - GID: 1000
+      - TZ: Asia/Shanghai
+      - QB_WEBUI_PORT: 8989
+      - QB_EE_BIN: false
 ```
 
 ```yaml {title="Baidu"}
@@ -256,9 +268,8 @@ services:
     restart: unless-stopped
     ports:
       - 6303:5800
-      #- 6304:5900
     volumes:
-      - ./config:/config
+      - /container/config:/config
       - /nfs/downloads:/downloads
     environment:
       - USER_ID=1000
