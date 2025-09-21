@@ -27,7 +27,7 @@ hasCJKLanguage = true
 # copyright description used only for seo schema
 copyright = "copyright 猫"
 # whether to use robots.txt
-enableRobotsTXT = false
+enableRobotsTXT = true
 # whether to use git commit log
 enableGitInfo = true
 # whether to use emoji code
