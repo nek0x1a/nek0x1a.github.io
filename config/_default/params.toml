@@ -1165,11 +1165,11 @@ logo_url = ""
 
 # Analytics 配置
 [analytics]
-enable = false
+enable = true
 
 # Google Analytics
 [analytics.google]
-id = "G-F6VDMBC3J"
+id = "G-F6VDMBC3J6"
 # 是否匿名化 IP
 anonymize_ip = true
 
@@ -1187,7 +1187,7 @@ id = ""
 [analytics.umami]
 data_website_id = "2c9ab2fe-56c6-4524-b4c0-fc3a6460f81d"
 src = "https://cloud.umami.is/script.js"
-data_host_url = "https://eroneko.eu.org/"
+data_host_url = "https://eroneko.eu.org"
 data_domains = "eroneko.eu.org"
 
 # Plausible Analytics
