@@ -1,21 +1,29 @@
 ---
 title: 你好，世界！
-date: 2025-07-11
+date: 2024-07-11
 categories: [文档]
 tags: [Hugo, markdown]
-expirationReminder:
+ruby: true
+expiration_reminder:
   enable: true
 math:
   enable: true
-mermaid:
+json_viewer:
   enable: true
 ---
 
 博客从 Docusaurus 迁移到 Hugo。
 
-博客最开始使用 Hexo，但由于主题逐渐年久失修，准备换一个博客框架，最好能方便自定义，由于想统一技术栈和眼馋 [MDX](https://mdxjs.com/) 的导入导出，首先选择了 Docusaurus，迁移之后没多久，弊端逐渐开始出现了，构建页面居然要跑 60+ 秒，还有那巨大的 node_modules 越看越不顺眼，干脆放弃使用 node 了。于是选择了 Hugo，经过编译的程序确实快，自定义也方便，但缺点是模板语法有点丑陋。
+这篇文章会整理将博客所有特性，作为一个画廊。
 
 <!--more-->
+
+博客最开始使用 Hexo，但由于主题逐渐年久失修，准备换一个博客框架，最好能方便自定义。
+由于想统一技术栈和眼馋 [MDX](https://mdxjs.com/) 的导入导出，首先换了 Docusaurus。
+
+刚迁移好，就发现构建页面居然要跑 60+ 秒，
+还有那巨大的 node_modules 越看越不顺眼，干脆放弃使用 node 了。
+于是选择了 Hugo，经过编译的程序确实快，自定义也方便，除了模板语法看着有点丑陋。
 
 ## Markdown 扩展
 

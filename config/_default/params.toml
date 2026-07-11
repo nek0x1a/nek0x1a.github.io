@@ -82,9 +82,9 @@ twemoji = false
 # Set to true, images in the content will be shown as the gallery if the image has a title, e.g. `![alt](src "title")`.
 # Set to "force", images in the content will be forced to shown as the gallery regardless of the image has a title or not, e.g. `![alt](src)`.
 lightgallery = false
-# Whether to enable the ruby extended syntax.
-ruby = true
-# Whether to enable the fraction extended syntax.
+# 是否启用 ruby 扩展语法
+ruby = false
+# 是否启用 fraction 扩展语法
 fraction = true
 # Whether to enable the fontawesome extended syntax.
 fontawesome = true
@@ -186,7 +186,7 @@ editable = false
 # JSON Viewer configuration.
 # See: [json-viewer-element](https://github.com/Lruihao/json-viewer-element)
 [json_viewer]
-enable = true
+enable = false
 expand_depth = 1
 copyable = true
 sort = false
@@ -220,10 +220,7 @@ cdn = "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs"
 # Example: `https://cdn.jsdelivr.net/npm/@mermaid-js/mermaid-zenuml/dist/mermaid-zenuml.esm.min.mjs`.
 zenuml = ""
 # For values, See: [Available Themes](https://mermaid.js.org/config/theming.html#available-themes).
-themes = [
-  "default",
-  "dark"
-]
+themes = ["default", "dark"]
 # The security level for Mermaid diagrams.
 # available values: ["strict", "loose", "antiscript", "sandbox"]
 security_level = "loose"
@@ -261,12 +258,12 @@ decrease_h1 = false
 
 # Display a message at the beginning of an article to warn the reader that its content might be expired.
 [expiration_reminder]
-enable = false
-# Display the reminder if the last modified time is more than 90 days ago.
-reminder = 90
-# Display warning if the last modified time is more than 180 days ago.
-warning = 180
-# If the article expires, close the comment or not.
+enable = true
+# 如果最后修改时间超过 90 天，则显示提醒
+reminder = 180
+# 如果最后修改时间超过 180 天，则显示警告
+warning = 360
+# 若文章过期，是否关闭评论
 close_comment = false
 
 # Page heading configuration.
@@ -292,9 +289,8 @@ h6 = "{h2}.{h3}.{h4}.{h5}.{h6} {title}"
 # Mathematical formulas configuration.
 # See: [Formula](http://fixit.lruihao.cn/documentation/content-management/markdown-syntax/extended/#formula)
 [math]
-enable = true
-# Mathematical formulas rendering engines.
-# available values: ["katex", "mathjax"]
+enable = false
+# 数学公式渲染引擎，可选值：["katex", "mathjax"]
 type = "katex"
 
 # KaTeX server-side rendering.
@@ -327,7 +323,7 @@ cdn = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 # MathJax loader configuration.
 # More loader config e.g source, dependencies, provides etc support.
 [math.mathjax.loader]
-load = [ "ui/safe" ]
+load = ["ui/safe"]
 
 [math.mathjax.loader.paths]
 # custom = "https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/"
@@ -345,7 +341,7 @@ skip_html_tags = [
   "math",
   "select",
   "option",
-  "mjx-container"
+  "mjx-container",
 ]
 # Class that marks tags not to search.
 ignore_html_class = "mathjax_ignore"
@@ -438,10 +434,7 @@ enable = false
 count = 5
 # Position of related content.
 # available values: ["aside", "footer"]
-position = [
-  "aside",
-  "footer"
-]
+position = ["aside", "footer"]
 
 # Donate (Sponsor) settings.
 [reward]
@@ -472,8 +465,8 @@ source = true
 edit = true
 # Whether to show link to report issue (requires git_info.repo).
 report = true
-# Open in editor protocol (e.g. "vscode", "trae" etc.), empty to disable.
-editor = "vscode"
+# 打开编辑器协议（例如 "vscode"、"trae" 等），留空则禁用
+editor = ""
 
 # Social share links in post page.
 [share]
@@ -579,11 +572,7 @@ app_id = ""
 app_key = ""
 placeholder = ""
 avatar = "mp"
-meta = [
-  'nick',
-  'mail',
-  'link'
-]
+meta = ['nick', 'mail', 'link']
 required_fields = []
 page_size = 10
 lang = ""
@@ -606,12 +595,8 @@ comment_count = true
 enable = false
 server_url = ""
 pageview = false
-emoji = [ "//unpkg.com/@waline/emojis@1.1.0/weibo" ]
-meta = [
-  "nick",
-  "mail",
-  "link"
-]
+emoji = ["//unpkg.com/@waline/emojis@1.1.0/weibo"]
+meta = ["nick", "mail", "link"]
 required_meta = []
 login = "enable"
 word_limit = 0
@@ -718,8 +703,8 @@ lazy_load = true
 
 # Public Git repository information only then enableGitInfo is true.
 [git_info]
-# Example: "https://github.com/hugo-fixit/docs".
-repo = ""
+# 例如 "https://github.com/hugo-fixit/docs"
+repo = "https://github.com/nek0x1a/nek0x1a.github.io"
 branch = "main"
 # The content directory path relative to the root of the repository.
 dir = "content"
@@ -729,11 +714,11 @@ issue_tpl = "title=[BUG]%20{title}&body=|Field|Value|%0A|-|-|%0A|Title|{title}|%
 
 # App and PWA configuration.
 [app]
-# Whether to enable PWA support.
-pwa = false
-# App name used for home screen and manifest (falls back to site title).
+# 是否启用 PWA 支持
+pwa = true
+# 用于主屏幕和 manifest 的应用名称（默认回退为站点标题）
 name = ""
-# Optional short name for the manifest (falls back to name).
+# manifest 的可选短名称（默认回退为名称）
 short_name = ""
 # Whether to omit favicon resource links.
 no_favicon = false
