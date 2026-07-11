@@ -2,6 +2,3 @@
 	path = themes/FixIt
 	url = https://github.com/hugo-fixit/FixIt.git
 	branch = main
-[submodule "themes/shortcode-docs-bookmark"]
-	path = themes/shortcode-docs-bookmark
-	url = https://github.com/hugo-fixit/shortcode-docs-bookmark

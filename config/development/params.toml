@@ -20,7 +20,4 @@ logo = "/images/fixit.min.svg"
 [home.profile]
 enable = true
 
-[customPartials]
-head = [
-  "inject/fixit-docs-bookmark.html",
-]
+[appearance]

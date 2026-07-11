@@ -21,6 +21,4 @@ logo = "/hugo-fixit-starter1/images/fixit.min.svg"
 enable = true
 
 [customPartials]
-head = [
-  "inject/fixit-docs-bookmark.html",
-]
+head = []
