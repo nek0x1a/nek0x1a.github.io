@@ -1,51 +1,51 @@
 # -------------------------------------------------------------------------------------
-# Theme Core Configuration
-# Two types of params:
-#   1. Site-level params — apply to the entire site, can NOT be overridden per-page.
-#   2. Page-level params — can be overridden per-page via page front matter.
+# 主题核心配置
+# 参数分为两类：
+#   1. 站点级参数 — 适用于整个站点，不能在单页中覆盖。
+#   2. 页面级参数 — 可通过页面 Front Matter 在每页中覆盖。
 #
-# See: https://fixit.lruihao.cn/documentation/basics/#theme-configuration
+# 参见: https://fixit.lruihao.cn/documentation/basics/#theme-configuration
 # -------------------------------------------------------------------------------------
 
-# FixIt theme version
-version = "1.0.X" # e.g. "0.4.X", "0.4.5", "v1.0.0" etc.
-# site description
-description = ""
-# site keywords
-keywords = []
-# site default theme ["light", "dark", "auto"]
+# FixIt 主题版本
+version = "1.0.X" # 例如 "0.4.X"、"0.4.5"、"v1.0.0" 等。
+# 站点描述
+description = "猫猫的记录"
+# 站点关键词
+keywords = ["Hugo", "猫猫的博客", "计算机技巧", "二次元", "日常吐槽"]
+# 站点默认主题 ["light", "dark", "auto"]
 default_theme = "auto"
-# which hash function used for SRI, when empty, no SRI is used
+# 用于 SRI 的哈希函数；为空时不启用 SRI
 # ["sha256", "sha384", "sha512", "md5"]
-fingerprint = ""
-# date format
+fingerprint = "sha512"
+# 日期格式
 date_format = "2006-01-02"
-# website images for Open Graph and Twitter Cards
-images = []
-# whether to add site title to the title of every page
-# remember to set up your site title in `hugo.toml` (e.g. title = "title")
+# 用于 Open Graph 和 Twitter Cards 的站点图片
+images = ["/images/logo.svg"]
+# 是否将站点标题添加到每个页面的标题中
+# 请在 `hugo.toml` 中配置站点标题，例如 `title = "title"`
 with_site_title = true
-# title delimiter when the site title is be added to the title of every page
+# 当将站点标题添加到页面标题时使用的分隔符
 title_delimiter = "-"
-# whether to add site subtitle to the title of index page
-# remember to set up your site subtitle by `params.header.subtitle.name`
+# 是否将站点副标题添加到首页标题中
+# 请通过 `params.header.subtitle.name` 配置站点副标题
 index_with_subtitle = false
-# whether to enable merging missing translations from other languages
-# when set to true, missing translations from other languages will be merged and displayed
-# default is false for better performance, especially for single-language sites
-# set to true if your site has multiple languages and you want to show all content
+# 是否启用从其他语言合并缺失翻译
+# 当设为 true 时，会合并并显示其他语言中的缺失翻译
+# 对于单语言站点，默认值为 false 以获得更好的性能
+# 若站点拥有多语言并希望展示所有内容，请将其设为 true
 enable_translation_merge = false
-# whether to enable tooltip replacement for elements with title attribute, such as footnote references
+# 是否为带有 title 属性的元素启用工具提示替换，例如脚注引用
 tooltip = true
-# FixIt will, by default, inject a theme meta tag in the HTML head on the home page only.
-# you can turn it off, but we would really appreciate if you don't, as this is a good way to watch FixIt's popularity on the rise.
+# 默认情况下，FixIt 仅会在首页的 HTML 头部注入主题 Meta 标签。
+# 你可以关闭它，但我们非常希望你不要这样做，因为这是了解 FixIt 受欢迎程度的好方式。
 disable_theme_inject = false
 
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-# Page-level params
-# All params and sections below can be used in page front matter to override per-page.
+# 页面级参数
+# 以下所有参数和章节都可以在页面 Front Matter 中用于按页覆盖。
 #
-# Example front matter:
+# 示例 Front Matter：
 #   ---
 #   capitalize_titles: false
 #   hidden_from_home_page: true
@@ -57,125 +57,125 @@ disable_theme_inject = false
 #     enable: false
 #   ---
 #
-# See: https://fixit.lruihao.cn/documentation/content-management/front-matter
+# 参见: https://fixit.lruihao.cn/documentation/content-management/front-matter
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# whether to capitalize titles
+# 是否将标题转为首字母大写
 capitalize_titles = true
-# whether to show summary in plain text
+# 是否以纯文本显示摘要
 summary_plainify = false
-# whether to enable the author's avatar of the post
+# 是否启用文章作者头像
 author_avatar = true
-# whether to hide a page from home page
+# 是否从首页隐藏页面
 hidden_from_home_page = false
-# whether to hide a page from search results
+# 是否从搜索结果中隐藏页面
 hidden_from_search = false
-# whether to hide a page from related posts
+# 是否从相关文章中隐藏页面
 hidden_from_related = false
-# whether to hide a page from RSS, Atom and JSON feed
+# 是否从 RSS、Atom 和 JSON Feed 中隐藏页面
 hidden_from_feed = false
-# whether to enable twemoji
+# 是否启用 twemoji
 twemoji = false
-# whether to enable lightgallery
-# set to true, images in the content will be shown as the gallery if the image has a title, e.g. ![alt](src "title")
-# set to "force", images in the content will be forced to shown as the gallery regardless of the image has a title or not, e.g. ![alt](src)
-# [todo] change gallery engine in the future
+# 是否启用 lightgallery
+# 当设为 true 时，如果图片带有标题，例如 `![alt](src "title")`，内容中的图片将以画廊形式展示
+# 当设为 "force" 时，无论图片是否带有标题，内容中的图片都会强制以画廊形式展示，例如 `![alt](src)`
+# [todo] 后续会更换画廊引擎
 lightgallery = false
-# whether to enable the ruby extended syntax
+# 是否启用 ruby 扩展语法
 ruby = true
-# whether to enable the fraction extended syntax
+# 是否启用 fraction 扩展语法
 fraction = true
-# whether to enable the fontawesome extended syntax
+# 是否启用 fontawesome 扩展语法
 fontawesome = true
-# license info (HTML format is supported)
+# 许可证信息（支持 HTML 格式）
 license = '<a rel="license external nofollow noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a>'
-# Page style ["narrow", "normal", "wide", ...]
+# 页面样式 ["narrow", "normal", "wide", ...]
 page_style = "normal"
-# Auto Bookmark Support
-# if true, save the reading progress when closing the page.
+# 自动书签支持
+# 若为 true，则在关闭页面时保存阅读进度。
 auto_bookmark = false
-# whether to show the last modified time
+# 是否显示最后修改时间
 show_lastmod = true
-# whether to enable wordCount
+# 是否启用 wordCount
 word_count = true
-# whether to enable readingTime
+# 是否启用 readingTime
 reading_time = true
-# whether to enable instant.page
+# 是否启用 instant.page
 instant_page = false
-# whether to enable collection list at the sidebar
+# 是否在侧边栏启用合集列表
 collection_list = false
-# whether to enable collection navigation at the end of the post
+# 是否在文章末尾启用合集导航
 collection_navigation = false
-# end of post flag
+# 文章末尾标记
 end_flag = ""
 
-# Author Configuration
+# 作者配置
 [author]
 name = ""
 email = ""
 link = ""
 avatar = ""
 
-# Link config
+# 链接配置
 [link]
-# whether to add external Icon for external links automatically
+# 是否自动为外部链接添加外部图标
 external_icon = true
 
-# External link guard config
+# 外部链接保护配置
 [link.guard]
 enable = false
-# external link guard mode, available modes: ["modal", "redirect"]
-# in "modal" mode, a dialog will pop up to ask for confirmation when users click external links
-# in "redirect" mode, users will be redirected to an intermediate page before visiting external links
+# 外部链接保护模式，可用模式：["modal", "redirect"]
+# 在 "modal" 模式下，当用户点击外部链接时，会弹出对话框要求确认
+# 在 "redirect" 模式下，用户会先被重定向到中间页面，再访问外部链接
 mode = "modal"
-# allowed domains (exact host or parent domain) will skip confirmation
+# 允许的域名（精确主机名或父域名）将跳过确认
 allow_domains = []
 
-# Image config
-# combined with Hugo's image processing option `imaging` for image optimisation
+# 图片配置
+# 结合 Hugo 的图片处理选项 `imaging` 进行图片优化
 [image]
-# cache remote images for better optimisations
+# 缓存远程图片以获得更好的优化效果
 cache_remote = false
-# Image resizing and optimisation (may slow builds)
+# 调整图片尺寸并优化（可能会减慢构建）
 optimise = false
-# A list of image file names or patterns to exclude from optimisation
-# e.g. ["no-optimize.jpg", "*.tiff", "images/exclude-*.webp"]
+# 需要从优化中排除的图片文件名或匹配模式列表
+# 例如 ["no-optimize.jpg", "*.tiff", "images/exclude-*.webp"]
 black_list = []
 
-# Code block wrapper config
-# you can override the global config via Markdown attributes, for example:
+# 代码块包装配置
+# 你可以通过 Markdown 属性覆盖全局配置，例如：
 # ```lang {mode="mac", max_shown_lines=5}
 # code here
 # ```
 [codeblock]
-# whether to enable the code block wrapper
+# 是否启用代码块包装器
 wrapper = true
-# code block mode
-# available modes: ["classic", "mac", "simple", ...]
-# if you set to custom value, you need to create a custom CSS for data-mode attribute
+# 代码块模式
+# 可用模式：["classic", "mac", "simple", ...]
+# 如果你设置为自定义值，则需要为 data-mode 属性创建自定义 CSS
 mode = "classic"
-# additional classes for the code block wrapper
-# e.g. "is-collapsed is-expanded line-nos-hidden line-wrapping"
+# 代码块包装器的附加类
+# 例如 "is-collapsed is-expanded line-nos-hidden line-wrapping"
 wrapper_class = ""
-# the maximum number of lines to show in the code block preview
+# 代码块预览中最多显示的行数
 max_shown_lines = 10
-# whether to show shadow effect for code blocks, available values: ["always", "hover", "never"]
+# 是否显示代码块阴影效果，可选值：["always", "hover", "never"]
 shadow = "never"
-# whether to enable code copy button
+# 是否启用代码复制按钮
 copyable = true
-# [classic] whether to enable code download button in the code block header
+# [classic] 是否在代码块标题栏中启用代码下载按钮
 downloadable = false
-# [classic] whether to enable code fullscreen button in the code block header
+# [classic] 是否在代码块标题栏中启用代码全屏按钮
 fullscreen = false
-# [classic] whether to enable line numbers toggle button in the code block header
+# [classic] 是否在代码块标题栏中启用行号切换按钮
 line_nos_toggler = true
-# [classic] whether to enable toggle line wrapping button in the code block header
+# [classic] 是否在代码块标题栏中启用自动换行切换按钮
 line_wrap_toggler = true
-# [classic][Experimental] whether to enable code edit button in the code block header
+# [classic][Experimental] 是否在代码块标题栏中启用代码编辑按钮
 editable = false
 
-# JSON Viewer config
-# See https://github.com/Lruihao/json-viewer-element
+# JSON 查看器配置
+# 参见 https://github.com/Lruihao/json-viewer-element
 [json_viewer]
 enable = true
 expand_depth = 1
@@ -183,93 +183,93 @@ copyable = true
 sort = false
 boxed = true
 
-# File tree config
-# See https://fixit.lruihao.cn/documentation/content-management/shortcodes/extended/file-tree/
+# 文件树配置
+# 参见 https://fixit.lruihao.cn/documentation/content-management/shortcodes/extended/file-tree/
 [filetree]
-# the expand level of the tree (expand all: -1, collapse all: 0)
+# 树的展开级别（全部展开：-1，全部折叠：0）
 level = 1
-# whether to append a trailing "/" to folder names
+# 是否为文件夹名称追加尾随 "/"
 folder_slash = false
-# list of file or folder names to ignore
+# 要忽略的文件或文件夹名称列表
 ignore_list = []
-# list of file or folder names to highlight
+# 要高亮显示的文件或文件夹名称列表
 highlight_list = []
 
-# Mermaid config
-# See http://fixit.lruihao.cn/documentation/content-management/diagrams-support/mermaid/
+# Mermaid 配置
+# 参见 http://fixit.lruihao.cn/documentation/content-management/diagrams-support/mermaid/
 [mermaid]
-# whether to enable the Mermaid wrapper
-# When enabled, Mermaid diagrams are wrapped with diagram tabs and actions:
-# - pan/zoom (drag & ctrl+wheel)
-# - reset view
-# - download as SVG
+# 是否启用 Mermaid 包装器
+# 启用后，Mermaid 图表会被包装为图表标签页和操作项：
+# - 平移/缩放（拖拽并按住 Ctrl + 滚轮）
+# - 重置视图
+# - 以 SVG 格式下载
 wrapper = true
-# Mermaid ESM module CDN source
-# default is https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs
+# Mermaid ESM 模块 CDN 源
+# 默认为 https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs
 cdn = ""
-# ZenUML ESM module CDN source
-# default is empty, you can set it to a CDN source to enable ZenUML support
-# e.g. https://cdn.jsdelivr.net/npm/@mermaid-js/mermaid-zenuml/dist/mermaid-zenuml.esm.min.mjs
+# ZenUML ESM 模块 CDN 源
+# 默认为空，你可以将其设置为 CDN 源以启用 ZenUML 支持
+# 例如 https://cdn.jsdelivr.net/npm/@mermaid-js/mermaid-zenuml/dist/mermaid-zenuml.esm.min.mjs
 zenuml = ""
-# for values, see https://mermaid.js.org/config/theming.html#available-themes
+# 相关值请参见 https://mermaid.js.org/config/theming.html#available-themes
 themes = [
-  "default",
+  "neutral",
   "dark"
 ]
-# The security level for Mermaid diagrams
-# optional values: ["strict", "loose", "antiscript", "sandbox"]
+# Mermaid 图表的安全级别
+# 可选值：["strict", "loose", "antiscript", "sandbox"]
 security_level = "loose"
-# The appearance style for Mermaid diagrams
-# optional values: ["classic", "handDrawn"]
-look = "handDrawn"
-# Specifies the font to be used in the rendered diagrams
+# Mermaid 图表的外观样式
+# 可选值：["classic", "handDrawn"]
+look = "classic"
+# 指定渲染图表所使用的字体
 font_family = ""
-# Layout loaders from ESM module CDN sources (e.g., ELK layout engine)
-# Example: ["https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk/dist/mermaid-layout-elk.esm.min.mjs"]
-# this will enable additional layout options: ["elk", "elk.layered", "elk.stress", "elk.force", "elk.mrtree"]
+# ESM 模块 CDN 源中的布局加载器（例如 ELK 布局引擎）
+# 示例：["https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk/dist/mermaid-layout-elk.esm.min.mjs"]
+# 这将启用额外的布局选项：["elk", "elk.layered", "elk.stress", "elk.force", "elk.mrtree"]
 layout_loaders = []
-# default layout algorithm for rendering diagrams
-# available options: "dagre" (default), "elk", "elk.layered", "elk.stress", "elk.force", "elk.mrtree"
-# note: ELK layouts require layout_loaders to be configured first
+# 默认布局算法
+# 可用选项："dagre"（默认）、"elk"、"elk.layered"、"elk.stress"、"elk.force"、"elk.mrtree"
+# 注意：ELK 布局需要先配置 layout_loaders
 layout = "dagre"
 
-# Table of the contents config
+# 目录配置
 [toc]
-# whether to enable the table of the contents
+# 是否启用目录
 enable = true
-# whether to keep the static table of the contents in front of the post
+# 是否将目录静态置于文章前方
 keep_static = false
-# whether to make the table of the contents in the sidebar automatically collapsed
+# 是否让侧边栏中的目录自动折叠
 auto = true
-# position of TOC ["left", "right"]
+# TOC 位置 ["left", "right"]
 position = "right"
-# supersede `markup.tableOfContents` settings
+# 覆盖 `markup.tableOfContents` 设置
 ordered = false
 start_level = 2
 end_level = 6
-# whether to decrease the H1 heading level in content
+# 是否降低内容中的 H1 标题级别
 decrease_h1 = false
 
-# Display a message at the beginning of an article to warn the reader that its content might be expired
+# 在文章开头显示提醒消息，提醒读者内容可能已过期
 [expiration_reminder]
 enable = false
-# display the reminder if the last modified time is more than 90 days ago
-reminder = 90
-# display warning if the last modified time is more than 180 days ago
-warning = 180
-# if the article expires, close the comment or not
+# 如果最后修改时间超过 90 天，则显示提醒
+reminder = 180
+# 如果最后修改时间超过 180 天，则显示警告
+warning = 365
+# 若文章过期，是否关闭评论
 close_comment = false
 
-# page heading config
+# 页面标题配置
 [heading]
-# whether to capitalize automatic text of headings
+# 是否将标题中的自动文本转为首字母大写
 capitalize = false
 
-# must set `params.toc.ordered` to true
+# 必须将 `params.toc.ordered` 设为 true
 [heading.number]
-# whether to enable auto heading numbering
+# 是否启用自动标题编号
 enable = false
-# only enable in main section pages (default is posts)
+# 仅在主章节页面（默认为 posts）中启用
 only_main_section = true
 
 [heading.number.format]
@@ -280,36 +280,36 @@ h4 = "{h2}.{h3}.{h4} {title}"
 h5 = "{h2}.{h3}.{h4}.{h5} {title}"
 h6 = "{h2}.{h3}.{h4}.{h5}.{h6} {title}"
 
-# mathematical formulas configuration
-# See http://fixit.lruihao.cn/documentation/content-management/markdown-syntax/extended/#formula
+# 数学公式配置
+# 参见 http://fixit.lruihao.cn/documentation/content-management/markdown-syntax/extended/#formula
 [math]
 enable = true
-# mathematical formulas rendering engines, optional values: ["katex", "mathjax"]
+# 数学公式渲染引擎，可选值：["katex", "mathjax"]
 type = "katex"
 
-# KaTeX server-side rendering (https://katex.org)
-# KaTeX partial config: https://gohugo.io/functions/transform/tomath/#options
+# KaTeX 服务端渲染 (https://katex.org)
+# KaTeX 部分配置: https://gohugo.io/functions/transform/tomath/#options
 [math.katex]
-# KaTeX extension copy-tex
+# KaTeX 扩展 copy-tex
 copy_tex = true
 throw_on_error = false
 error_color = "#ff4949"
 
-# custom macros map
-# syntax: <macro> = <definition>
+# 自定义宏映射
+# 语法: <macro> = <definition>
 [math.katex.macros]
 # "\\f" = "#1f(#2)" # usage: $\f{a}{b}$
 
-# MathJax server-side rendering (https://www.mathjax.org)
-# MathJax config: https://docs.mathjax.org/en/latest/options/index.html
+# MathJax 服务端渲染 (https://www.mathjax.org)
+# MathJax 配置: https://docs.mathjax.org/en/latest/options/index.html
 [math.mathjax]
 cdn = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 
 [math.mathjax.packages]
 # "[+]" = ["configmacros"]
 
-# custom macros map
-# syntax: <macro> = <definition>
+# 自定义宏映射
+# 语法: <macro> = <definition>
 [math.mathjax.macros]
 # bold = ["{\\bf #1}", 1] # usage: $\bold{math}$
 
@@ -319,11 +319,11 @@ load = [ "ui/safe" ]
 [math.mathjax.loader.paths]
 # custom = "https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/"
 
-# more loader config e.g source, dependencies, provides etc.
+# 更多加载器配置，例如 source、dependencies、provides 等。
 
 [math.mathjax.options]
 enable_menu = true
-# HTML tags that won't be searched for math
+# 不会被搜索为数学公式的 HTML 标签
 skip_html_tags = [
   "script",
   "noscript",
@@ -336,40 +336,40 @@ skip_html_tags = [
   "option",
   "mjx-container"
 ]
-# class that marks tags not to search
+# 标记为不参与搜索的标签类名
 ignore_html_class = "mathjax_ignore"
 
-# HTML tags that can appear within math
+# 可出现在数学公式中的 HTML 标签
 [math.mathjax.options.include_html_tags]
 # "#comment" = ""
 # br = "\n"
 # wbr = ""
 
-# Mapbox GL JS config (https://docs.mapbox.com/mapbox-gl-js)
+# Mapbox GL JS 配置 (https://docs.mapbox.com/mapbox-gl-js)
 [mapbox]
-# access token of Mapbox GL JS
+# Mapbox GL JS 的访问令牌
 access_token = ""
-# style for the light theme
+# 浅色主题样式
 light_style = "mapbox://styles/mapbox/light-v11"
-# style for the dark theme
+# 深色主题样式
 dark_style = "mapbox://styles/mapbox/dark-v11"
-# whether to add NavigationControl
+# 是否添加 NavigationControl
 navigation = true
-# whether to add GeolocateControl
+# 是否添加 GeolocateControl
 geolocate = true
-# whether to add ScaleControl
+# 是否添加 ScaleControl
 scale = true
-# whether to add FullscreenControl
+# 是否添加 FullscreenControl
 fullscreen = true
 
-# PostChat AI config
-# based on your posts to build a knowledge base, support AI summary, AI search, and AI Chatbot.
-# get PostChat Key from my invitation link, thanks for your support!
+# PostChat AI 配置
+# 基于你的文章构建知识库，支持 AI 摘要、AI 搜索和 AI 聊天机器人。
+# 通过我的邀请链接获取 PostChat Key，感谢你的支持！
 # https://ai.zhheo.com/console/login?InviteID=85041330
 [post_chat]
 enable = false
 key = ""
-# how users initiate chats: ["iframe", "magic"]
+# 用户如何发起聊天：["iframe", "magic"]
 user_mode = "iframe"
 add_button = true
 default_input = false
@@ -383,25 +383,25 @@ upload_web = true
 show_invite_link = true
 user_title = ""
 user_desc = ""
-# dom container to be blacked out, e.g. [".aplayer"]
+# 需要遮蔽的 DOM 容器，例如 [".aplayer"]
 black_dom = []
-# only for iframe mode
-frame_width = "" # e.g. "375px"
-frame_height = "" # e.g. "600px"
-# only for magic mode
+# 仅适用于 iframe 模式
+frame_width = "" # 例如 "375px"
+frame_height = "" # 例如 "600px"
+# 仅适用于 magic 模式
 user_icon = ""
 default_chat_questions = []
 default_search_questions = []
 hot_words = true
 
-# Summary AI config
-# See https://ai.zhheo.com/docs/summary.html
+# Summary AI 配置
+# 参见 https://ai.zhheo.com/docs/summary.html
 [post_summary]
 enable = false
-# if you set `params.post_chat.key`, you don't need to set `params.post_summary.key`
+# 如果你设置了 `params.post_chat.key`，则无需再设置 `params.post_summary.key`
 key = ""
 title = ""
-# themes options: ["", "simple", "yanzhi", "menghuan"]
+# 主题选项：["", "simple", "yanzhi", "menghuan"]
 theme = ""
 post_url = ""
 blacklist = ""
@@ -410,29 +410,29 @@ typing_animate = true
 beginning_text = ""
 loading_text = true
 
-# Podcast AI config
-# See https://ai.zhheo.com/docs/podcast.html
+# Podcast AI 配置
+# 参见 https://ai.zhheo.com/docs/podcast.html
 [podcast]
 enable = false
 
-# Related content config (https://gohugo.io/content-management/related/)
+# 相关文章配置 (https://gohugo.io/content-management/related/)
 [related]
 enable = false
 count = 5
-# position of related content, optional values: ["aside", "footer"]
+# 相关文章位置，可选值：["aside", "footer"]
 position = [
   "aside",
   "footer"
 ]
 
-# Donate (Sponsor) settings
+# 打赏（赞助）设置
 [reward]
 enable = false
 animation = false
-# position relative to post footer, optional values: ["before", "after"]
+# 相对于文章页脚的位置，可选值：["before", "after"]
 position = "after"
 # comment = "Buy me a coffee"
-# display mode of QR code images, optional values: ["static", "fixed"], default: `static`
+# 二维码图片显示模式，可选值：["static", "fixed"], 默认值为 `static`
 mode = "static"
 
 [reward.ways]
@@ -441,22 +441,22 @@ mode = "static"
 # paypal = "/images/paypal.png"
 # bitcoin = "/images/bitcoin.png"
 
-# Post footer link config
+# 文章页脚链接配置
 [post_link]
-# whether to show link to Raw Markdown content
+# 是否显示原始 Markdown 内容链接
 markdown = true
-# whether to show link to view source code (requires git_info.repo)
+# 是否显示查看源代码链接（需要 git_info.repo）
 source = true
-# whether to show link to edit the post (requires git_info.repo)
-edit = true
-# whether to show link to report issue (requires git_info.repo)
+# 是否显示编辑文章链接（需要 git_info.repo）
+edit = false
+# 是否显示报告问题链接（需要 git_info.repo）
 report = true
-# open in editor protocol (e.g. "vscode", "trae" etc.), empty to disable
+# 打开编辑器协议（例如 "vscode"、"trae" 等），留空则禁用
 editor = "vscode"
 
-# Social share links in post page
+# 文章页社交分享链接
 [share]
-enable = true
+enable = false
 Twitter = true
 Facebook = true
 Linkedin = false
@@ -482,24 +482,24 @@ Skype = false
 Trello = false
 Mix = false
 
-# Comment config
+# 评论配置
 [comment]
-enable = false
+enable = true
 
-# Artalk comment config (https://artalk.js.org/)
+# Artalk 评论配置 (https://artalk.js.org/)
 [comment.artalk]
 enable = false
 server = "https://yourdomain"
 site = "默认站点"
-# prefer remote (backend) configuration over local
-# If true, remote config takes priority; if false (default), local config overrides remote
+# 优先使用远端（后端）配置而非本地配置
+# 如果为 true，则远端配置优先；如果为 false（默认），则本地配置覆盖远端
 prefer_remote_conf = false
 placeholder = ""
 no_comment = ""
 send_btn = ""
 editor_travel = true
 flat_mode = "auto"
-# enable lightgallery support
+# 启用 lightgallery 支持
 lightgallery = false
 locale = ""
 emoticons = ""
@@ -514,30 +514,30 @@ img_upload = true
 img_lazy_load = false # false | "native" | "data-src"
 preview = true
 version_check = true
-# request timeout in milliseconds
+# 请求超时时间（毫秒）
 req_timeout = 15000
-# page view increment on comment list load
+# 页面加载评论列表时增加浏览量
 pv_add = true
 
-# pagination config
+# 分页配置
 [comment.artalk.pagination]
 page_size = 20
 read_more = true
 auto_load = true
 
-# height limit config
+# 高度限制配置
 [comment.artalk.height_limit]
 content = 300
 children = 400
 scrollable = false
 
-# Disqus comment config (https://disqus.com)
+# Disqus 评论配置 (https://disqus.com)
 [comment.disqus]
 enable = false
-# Disqus shortname to use Disqus in posts
+# Disqus 短名称，用于文章中的 Disqus 评论
 shortname = ""
 
-# Gitalk comment config (https://github.com/gitalk/gitalk)
+# Gitalk 评论配置 (https://github.com/gitalk/gitalk)
 [comment.gitalk]
 enable = false
 owner = ""
@@ -545,7 +545,7 @@ repo = ""
 client_id = ""
 client_secret = ""
 
-# Valine comment config (https://github.com/xCss/Valine)
+# Valine 评论配置 (https://github.com/xCss/Valine)
 [comment.valine]
 enable = false
 app_id = ""
@@ -565,15 +565,15 @@ record_ip = true
 highlight = true
 enable_qq = false
 server_urls = ""
-# emoji data file name, default is "google.yml"
+# 表情数据文件名，默认为 "google.yml"
 # ["apple.yml", "google.yml", "facebook.yml", "twitter.yml"]
-# located in "themes/FixIt/assets/lib/valine/emoji/" directory
-# you can store your own data files in the same path under your project:
+# 位于 "themes/FixIt/assets/lib/valine/emoji/" 目录下
+# 你也可以在项目同一路径下存放自己的数据文件：
 # "assets/lib/valine/emoji/"
 emoji = ""
 comment_count = true
 
-# Waline comment config (https://waline.js.org)
+# Waline 评论配置 (https://waline.js.org)
 [comment.waline]
 enable = false
 server_url = ""
@@ -597,7 +597,7 @@ recaptcha_v3_key = ""
 turnstile_key = ""
 reaction = false
 
-# Facebook comment config (https://developers.facebook.com/docs/plugins/comments)
+# Facebook 评论配置 (https://developers.facebook.com/docs/plugins/comments)
 [comment.facebook]
 enable = false
 width = "100%"
@@ -605,7 +605,7 @@ num_posts = 10
 app_id = ""
 language_code = ""
 
-# Telegram comments config (https://comments.app)
+# Telegram 评论配置 (https://comments.app)
 [comment.telegram]
 enable = false
 site_id = ""
@@ -616,11 +616,11 @@ colorful = true
 dislikes = false
 outlined = false
 
-# Commento comment config (https://commento.io)
+# Commento 评论配置 (https://commento.io)
 [comment.commento]
 enable = false
 
-# Utterances comment config (https://utteranc.es)
+# Utterances 评论配置 (https://utteranc.es)
 [comment.utterances]
 enable = false
 # owner/repo
@@ -630,7 +630,7 @@ label = ""
 light_theme = "github-light"
 dark_theme = "github-dark"
 
-# Twikoo comment config (https://twikoo.js.org/)
+# Twikoo 评论配置 (https://twikoo.js.org/)
 [comment.twikoo]
 enable = false
 env_id = ""
@@ -639,32 +639,32 @@ path = ""
 visitor = true
 comment_count = true
 lang = ""
-# enable lightgallery support
+# 启用 lightgallery 支持
 lightgallery = false
-# enable Katex support
+# 启用 Katex 支持
 katex = false
 
-# Giscus comments config
+# Giscus 评论配置
 [comment.giscus]
-enable = false
-repo = ""
-repo_id = ""
-category = ""
-category_id = ""
-mapping = ""
-# Or set it to your self-hosted domain
+enable = true
+repo = "nek0x1a/nek0x1a.github.io"
+repo_id = "R_kgDOTVROkw"
+category = "Announcements"
+category_id = "DIC_kwDOTVROk84DA-ZN"
+mapping = "pathname"
+# 或者将其设置为你自托管的域名
 origin = "https://giscus.app"
 strict = "0"
 term = ""
 reactions_enabled = "1"
 emit_metadata = "0"
 input_position = "bottom" # ["top", "bottom"]
-lang = ""
+lang = "zh-CN"
 light_theme = "light"
 dark_theme = "dark"
 lazy_load = true
 
-# Third-party library config
+# 第三方库配置
 [library]
 
 [library.css]
@@ -680,74 +680,74 @@ lazy_load = true
 # someJavascript = "https://cdn.example.com/some.js"
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-# public Git repository information only then enableGitInfo is true
+# 仅当启用 Git 信息时，才会公开 Git 仓库信息
 [git_info]
-# e.g. "https://github.com/hugo-fixit/docs"
+# 例如 "https://github.com/hugo-fixit/docs"
 repo = ""
 branch = "main"
-# the content directory path relative to the root of the repository
+# 内容目录路径，相对于仓库根目录
 dir = "content"
-# the issue template for reporting issue of the posts
-# available template params: {title} {URL} {sourceURL}
+# 用于报告文章问题的 issue 模板
+# 可用模板参数：{title} {URL} {sourceURL}
 issue_tpl = "title=[BUG]%20{title}&body=|Field|Value|%0A|-|-|%0A|Title|{title}|%0A|URL|{URL}|%0A|Filename|{sourceURL}|"
 
-# App and PWA config
+# App 与 PWA 配置
 [app]
-# whether to enable PWA support
-pwa = false
-# app name used for home screen and manifest (falls back to site title)
-name = ""
-# optional short name for the manifest (falls back to name)
+# 是否启用 PWA 支持
+pwa = true
+# 用于主屏幕和 manifest 的应用名称（默认回退为站点标题）
+name = "猫的笔记本"
+# manifest 的可选短名称（默认回退为名称）
 short_name = ""
-# whether to omit favicon resource links
+# 是否省略 favicon 资源链接
 no_favicon = false
-# modern SVG favicon to use in place of older style .png and .ico files
-svg_favicon = ""
-# Safari mask icon color
-mask_color = "#5bbad5"
-# Windows v8-10 tile color
-tile_color = "#da532c"
+# 用于替代旧版 .png 和 .ico 的现代 SVG favicon
+svg_favicon = "/images/logo.svg"
+# Safari 蒙版图标颜色
+mask_color = "#f6f8fa"
+# Windows v8-10 磁贴颜色
+tile_color = "#f6f8fa"
 
-# Android browser theme color
+# Android 浏览器主题色
 [app.theme_color]
 light = "#f6f8fa"
 dark = "#151b23"
 
-# Web app manifest icons (users should provide their own icon files)
+# Web App Manifest 图标（用户需要提供自己的图标文件）
 [[app.icons]]
-src = "/apple-touch-icon.png"
+src = "/images/logo-180.png"
 sizes = "180x180"
 type = "image/png"
 purpose = "any maskable"
 
 [[app.icons]]
-src = "/android-chrome-192x192.png"
+src = "/images/logo-192.png"
 sizes = "192x192"
 type = "image/png"
 
 [[app.icons]]
-src = "/android-chrome-512x512.png"
+src = "/images/logo-512.png"
 sizes = "512x512"
 type = "image/png"
 
-# Search config
+# 搜索配置
 [search]
 enable = true
-# type of search engine ["fuse", "algolia", "pagefind", "cse"]
+# 搜索引擎类型 ["fuse", "algolia", "pagefind", "cse"]
 type = "fuse"
-# max index length of the chunked content
+# 分块内容的最大索引长度
 content_length = 4000
-# placeholder of the search bar
+# 搜索栏占位符
 placeholder = ""
-# max number of results length
+# 搜索结果最大长度
 max_result_length = 10
-# snippet length of the result
+# 搜索结果片段长度
 snippet_length = 30
-# HTML tag name of the highlight part in results
+# 搜索结果中高亮部分的 HTML 标签名
 highlight_tag = "em"
-# whether to use the absolute URL based on the baseURL in search index
+# 是否在搜索索引中使用基于 baseURL 的绝对 URL
 absolute_url = false
-# whether to enable anchorify for headings in search results
+# 是否为搜索结果中的标题启用锚点化
 anchorify = true
 
 [search.algolia]
@@ -780,53 +780,53 @@ sort_by = ""
 # sort order for sort_by: ["asc", "desc"]
 sort_order = "desc"
 
-# Custom Search Engine (CSE)
+# 自定义搜索引擎 (CSE)
 [cse]
-# search engine: ["google", "bing"]
+# 搜索引擎：["google", "bing"]
 engine = "google"
-# search results page URL (layout: search)
+# 搜索结果页面 URL（布局：search）
 results_page = "/search/"
 
-# Google Custom Search Engine Context
-# See: https://programmablesearchengine.google.com/
+# Google 自定义搜索引擎上下文
+# 参见: https://programmablesearchengine.google.com/
 [cse.google]
 cx = ""
 
-# Bing Custom Search Engine Context (unverified)
-# See: https://www.customsearch.ai/
+# Bing 自定义搜索引擎上下文（未验证）
+# 参见: https://www.customsearch.ai/
 [cse.bing]
 cx = ""
 
-# Header config
+# 页头配置
 [header]
-# desktop header mode ["sticky", "normal", "auto"]
+# 桌面端页头模式 ["sticky", "normal", "auto"]
 desktop_mode = "sticky"
-# mobile header mode ["sticky", "normal", "auto"]
+# 移动端页头模式 ["sticky", "normal", "auto"]
 mobile_mode = "auto"
-# whether to enable header blur effect
-blur = false
+# 是否启用页头模糊效果
+blur = true
 
-# Header title config
+# 页头标题配置
 [header.title]
-# URL of the logo
-logo = ""
-# title name
+# logo 的 URL
+logo = "/images/logo.svg"
+# 标题名称
 name = ""
-# you can add extra information before the name (HTML format is supported), such as icons
+# 你可以在名称前添加额外信息（支持 HTML 格式），例如图标
 pre = ""
-# you can add extra information after the name (HTML format is supported), such as icons
+# 你可以在名称后添加额外信息（支持 HTML 格式），例如图标
 post = ""
-# whether to use typeit animation for title name
+# 是否为标题名称使用 typeit 动画
 typeit = false
 
-# Header subtitle config
+# 页头副标题配置
 [header.subtitle]
-# subtitle name
-name = ""
-# whether to use typeit animation for subtitle name
-typeit = false
+# 副标题名称
+name = "猫猫的记录"
+# 是否为副标题名称使用 typeit 动画
+typeit = true
 
-# Breadcrumb config
+# 面包屑配置
 [breadcrumb]
 enable = false
 sticky = false
@@ -834,45 +834,45 @@ show_home = false
 separator = "/"
 capitalize = true
 
-# Post navigation config
+# 文章导航配置
 [navigation]
-# whether to show the post navigation in section pages scope
+# 是否在章节页面范围内显示文章导航
 in_section = false
-# whether to reverse the next/previous post navigation order
+# 是否反转上/下一篇文章导航顺序
 reverse = false
 
-# Footer config
+# 页脚配置
 [footer]
 enable = true
-# whether to show copyright info
+# 是否显示版权信息
 copyright = true
-# whether to show the author
+# 是否显示作者
 author = true
-# site creation year
-since = ""
-# Public network security only in China (HTML format is supported)
+# 站点创建年份
+since = "2022"
+# 公网安全信息，仅适用于中国（支持 HTML 格式）
 gov = ""
-# ICP info only in China (HTML format is supported)
+# ICP 信息，仅适用于中国（支持 HTML 格式）
 icp = ""
-# license info (HTML format is supported)
+# 许可证信息（支持 HTML 格式）
 license = ""
 
-# whether to show Hugo and theme info
+# 是否显示 Hugo 和主题信息
 [footer.powered]
 enable = true
 hugo_logo = false
 theme_logo = false
 
-# Site creation time
+# 站点创建时间
 [footer.site_time]
 enable = false
 animate = true
 icon = "fa-solid fa-heartbeat"
 pre = ""
-# e.g. "2021-12-18T16:15:22+08:00"
+# 例如 "2021-12-18T16:15:22+08:00"
 value = ""
 
-# footer lines order, optional values: ["first", 0-5, "last"]
+# 页脚显示顺序，可选值：["first", 0-5, "last"]
 [footer.order]
 powered = 0
 copyright = 0
@@ -880,93 +880,93 @@ statistics = 0
 visitor = 0
 beian = 0
 
-# Archives page config (all pages of posts type)
+# 归档页配置（所有 posts 类型页面）
 [archives]
-# special amount of posts in archives page
+# 归档页中的文章数量
 paginate = 20
-# date format (month and day)
-date_format = "01-02"
+# 日期格式（月份和日期）
+date_format = "2006-01-02"
 
-# Section page config (all pages in section)
+# 章节页配置（所有 section 页面）
 [section]
-# special amount of pages in each section page
+# 每个章节页中的页面数量
 paginate = 20
-# date format (month and day)
-date_format = "01-02"
+# 日期格式（月份和日期）
+date_format = "2006-01-02"
 
-# Section feed config for RSS, Atom and JSON feed.
+# RSS、Atom 和 JSON Feed 的章节订阅配置。
 [section.feed]
-# the number of posts to include in the feed. If set to -1, all posts.
+# 订阅中包含的文章数量；若设为 -1，则包含全部文章。
 limit = -1
-# whether to show the full text content in feed.
-full_text = false
+# 是否在订阅中显示完整文本内容。
+full_text = true
 
-# Term list (category or tag) page config
+# 术语列表（分类或标签）页配置
 [list]
-# special amount of posts in each list page
+# 每个列表页中的文章数量
 paginate = 20
-# date format (month and day)
-date_format = "01-02"
+# 日期格式（月份和日期）
+date_format = "2006-01-02"
 
-# Term list feed config for RSS, Atom and JSON feed.
+# RSS、Atom 和 JSON Feed 的术语列表订阅配置。
 [list.feed]
-# the number of posts to include in the feed. If set to -1, all posts.
+# 订阅中包含的文章数量；若设为 -1，则包含全部文章。
 limit = -1
-# whether to show the full text content in feed.
-full_text = false
+# 是否在订阅中显示完整文本内容。
+full_text = true
 
-# recently updated pages config for archives, section and term list
+# 归档页、章节页和术语列表页的最近更新页面配置
 [recently_updated]
-archives = true
-section = true
-list = true
+archives = false
+section = false
+list = false
 days = 30
 max_count = 10
 
-# TagCloud config for tags page
+# 标签云配置
 [tag_cloud]
-enable = false
-min = 14 # Minimum font size in px
-max = 32 # Maximum font size in px
-peak_count = 10 # Maximum count of posts per tag
-orderby = "name" # Order of tags, optional values: ["name", "count"]
+enable = true
+min = 14 # 最小字体大小（px）
+max = 32 # 最大字体大小（px）
+peak_count = 10 # 每个标签最多展示的文章数
+orderby = "name" # 标签排序方式，可选值：["name", "count"]
 
-# Home page config
+# 主页配置
 [home]
 
-# Home page profile
+# 主页个人资料
 [home.profile]
-enable = false
-# whether to show profile and content only in the first home page
+enable = true
+# 是否仅在首页第一页显示个人资料和内容
 only_first_page = false
-# Gravatar email for preferred avatar in home page
+# 主页头像所使用的 Gravatar 邮箱
 gravatar_email = ""
-# URL of avatar shown in home page, default is author's avatar
+# 主页中显示的头像 URL，默认使用作者头像
 avatar_url = ""
-# identifier of avatar menu link
+# 头像菜单链接标识
 avatar_menu = ""
-# title shown in home page (HTML format is supported)
-title = ""
-# subtitle shown in home page (HTML format is supported)
+# 主页中显示的标题（支持 HTML 格式）
+title = "猫的笔记本"
+# 主页中显示的副标题（支持 HTML 格式）
 subtitle = ""
-# whether to use typeit animation for subtitle
+# 是否为副标题使用 typeit 动画
 typeit = true
-# whether to show social links
+# 是否显示社交链接
 social = true
-# disclaimer (HTML format is supported)
+# 免责声明（支持 HTML 格式）
 disclaimer = ""
 
-# Home page posts
+# 主页文章
 [home.posts]
 enable = true
-# special amount of posts in each home posts page
-paginate = 6
-# whether to show featured image preview in home page post list
+# 每个主页文章页中的文章数量
+paginate = 10
+# 是否在主页文章列表中显示特色图片预览
 image_preview = true
 
-# Social config about the author
+# 作者社交配置
 [social]
-GitHub = ""
+GitHub = "https://github.com/nek0x1a"
 Linkedin = ""
 Twitter = ""
 Instagram = ""
@@ -1053,10 +1053,10 @@ TikTok = ""
 Credly = ""
 Bluesky = ""
 Phone = ""
-Email = ""
+Email = "neko@eroneko.eu.org"
 RSS = true
 
-# custom social links like the following
+# 自定义社交链接，如下所示
 # [params.social.twitter]
 # id = "lruihao"
 # weight = 3
@@ -1066,80 +1066,80 @@ RSS = true
 # [params.social.twitter.icon]
 # class = "fa-brands fa-x-twitter"
 
-# TypeIt config
+# TypeIt 配置
 [typeit]
-# typing speed between each step (measured in milliseconds)
+# 每一步打字之间的速度（毫秒）
 speed = 100
-# blinking speed of the cursor (measured in milliseconds)
+# 光标闪烁速度（毫秒）
 cursor_speed = 1000
-# character used for the cursor (HTML format is supported)
+# 光标所使用的字符（支持 HTML 格式）
 cursor_char = "|"
-# cursor duration after typing finishing (measured in milliseconds, "-1" means unlimited)
+# 打字结束后的光标持续时间（毫秒，"-1" 表示无限）
 duration = -1
-# whether your strings will continuously loop after completing
-# [fixme] There is a bug when printing in groups
+# 字符串完成后是否持续循环
+# [fixme] 打印分组时存在一个 bug
 loop = false
 
-# Admonitions custom config
-# See https://fixit.lruihao.cn/documentation/content-management/shortcodes/extended/admonition/#custom-admonitions
-# syntax: <type> = <icon>
+# 警告框自定义配置
+# 参见 https://fixit.lruihao.cn/documentation/content-management/shortcodes/extended/admonition/#custom-admonitions
+# 语法: <type> = <icon>
 [admonition]
 # ban = "fa-solid fa-ban"
 
-# Task lists custom config
-# See https://fixit.lruihao.cn/documentation/content-management/advanced/#custom-task-lists
-# syntax: <sign> = <icon>
+# 任务列表自定义配置
+# 参见 https://fixit.lruihao.cn/documentation/content-management/advanced/#custom-task-lists
+# 语法: <sign> = <icon>
 [task_list]
 # tip = "fa-regular fa-lightbulb"
 
-# version shortcode config
+# 版本短代码配置
 [repo_version]
-# project name
+# 项目名称
 name = "FixIt"
-# url prefix for the release tag
+# 发布标签的 URL 前缀
 url = "https://github.com/hugo-fixit/FixIt/releases/tag/v"
 
-# PanguJS config
+# PanguJS 配置
 [pangu]
-# for Chinese writing
-enable = false
+# 适用于中文排版
+enable = true
 selector = "article"
 
-# Watermark config
-# detail config see https://github.com/Lruihao/watermark#readme
+# 水印配置
+# 详情配置请参见 https://github.com/Lruihao/watermark#readme
 [watermark]
 enable = false
-# watermark's text (HTML format is supported)
+# 水印文本（支持 HTML 格式）
 content = ""
-# watermark's transparency
+# 水印透明度
 opacity = 0.1
-# watermark's width. unit: px
+# 水印宽度，单位：px
 width = 150
-# watermark's height. unit: px
+# 水印高度，单位：px
 height = 20
-# row spacing of watermarks. unit: px
+# 水印行间距，单位：px
 row_spacing = 60
-# col spacing of watermarks. unit: px
+# 水印列间距，单位：px
 col_spacing = 30
-# watermark's tangent angle. unit: deg
+# 水印切线角度，单位：deg
 rotate = 15
-# watermark's fontSize. unit: rem
+# 水印字体大小，单位：rem
 font_size = 0.85
-# watermark's fontFamily
+# 水印字体族
 font_family = "inherit"
 
-# Busuanzi count
+# Busuanzi 统计
 [busuanzi]
-# whether to enable busuanzi count
+# 是否启用 Busuanzi 统计
 enable = false
-# busuanzi count core script source. Default is https://vercount.one/js
+# Busuanzi 统计核心脚本源，默认为 https://vercount.one/js
 source = "https://vercount.one/js"
-# whether to show the site views
+# 是否显示站点浏览量
 site_views = true
-# whether to show the page views
+# 是否显示页面浏览量
 page_views = true
 
-# Site verification code config for Google/Bing/Yandex/Pinterest/Baidu/360/Sogou
+# Google/Bing/Yandex/Pinterest/Baidu/360/Sogou 站点验证代码配置
 [verification]
 google = ""
 bing = ""
@@ -1149,34 +1149,34 @@ baidu = ""
 so = ""
 sogou = ""
 
-# Site SEO config
+# 站点 SEO 配置
 [seo]
-# default cover image for the site
+# 站点默认封面图
 cover = ""
-# thumbnail URL
+# 缩略图 URL
 thumbnail_url = ""
-# Page SEO images (frontmatter-overridable)
+# 页面 SEO 图片（可由 Front Matter 覆盖）
 images = []
 
-# Publisher info (frontmatter-overridable)
+# 发布者信息（可由 Front Matter 覆盖）
 [seo.publisher]
 name = ""
 logo_url = ""
 
-# Analytics config
+# Analytics 配置
 [analytics]
 enable = false
 
 # Google Analytics
 [analytics.google]
-id = ""
-# whether to anonymize IP
+id = "G-F6VDMBC3J"
+# 是否匿名化 IP
 anonymize_ip = true
 
 # Fathom Analytics
 [analytics.fathom]
 id = ""
-# server url for your tracker if you're self hosting
+# 如果你自托管追踪器，则可设置服务器 URL
 server = ""
 
 # Baidu Analytics
@@ -1185,10 +1185,10 @@ id = ""
 
 # Umami Analytics
 [analytics.umami]
-data_website_id = ""
-src = ""
-data_host_url = ""
-data_domains = ""
+data_website_id = "2c9ab2fe-56c6-4524-b4c0-fc3a6460f81d"
+src = "https://cloud.umami.is/script.js"
+data_host_url = "https://eroneko.eu.org/"
+data_domains = "eroneko.eu.org"
 
 # Plausible Analytics
 [analytics.plausible]
@@ -1202,120 +1202,120 @@ token = ""
 # Splitbee Analytics
 [analytics.splitbee]
 enable = false
-# no cookie mode
+# 无 Cookie 模式
 no_cookie = true
-# respect the do not track setting of the browser
+# 尊重 Do Not Track 设置
 do_not_track = true
-# token(optional), more info on https://splitbee.io/docs/embed-the-script
+# token（可选），更多信息请参见 https://splitbee.io/docs/embed-the-script
 data_token = ""
 
-# Cookie consent config
+# Cookie 同意配置
 [cookieconsent]
-enable = true
+enable = false
 
-# text strings used for Cookie consent banner
+# Cookie 同意横幅中使用的文本字符串
 [cookieconsent.content]
 message = ""
 dismiss = ""
 link = ""
 
-# CDN config for third-party library files
+# 第三方库文件的 CDN 配置
 [cdn]
-# CDN data file name, disabled by default ["jsdelivr.yml", "unpkg.yml", ...]
-# located in "themes/FixIt/assets/data/cdn/" directory
-# you can store your own data files in the same path under your project: "assets/data/cdn/"
+# CDN 数据文件名，默认禁用 ["jsdelivr.yml", "unpkg.yml", ...]
+# 位于 "themes/FixIt/assets/data/cdn/" 目录下
+# 你也可以在项目相同路径下存放自己的数据文件："assets/data/cdn/"
 data = ""
 
-# Compatibility config
+# 兼容性配置
 [compatibility]
-# whether to use Polyfill.io on cdnjs to be compatible with older browsers
+# 是否在 cdnjs 上使用 Polyfill.io 以兼容旧版浏览器
 # https://cdnjs.cloudflare.com/polyfill
 polyfill = false
-# whether to use object-fit-images to be compatible with older browsers
+# 是否使用 object-fit-images 以兼容旧版浏览器
 object_fit = false
 
-# GitHub banner in the top-right or top-left corner
+# 左上或右上角的 GitHub 横幅
 [github_corner]
 enable = false
 permalink = "https://github.com/hugo-fixit/FixIt"
 title = "View source on GitHub"
 position = "right" # ["left", "right"]
 
-# Gravatar config
+# Gravatar 配置
 [gravatar]
-# Depends on the author's email, if the author's email is not set, the local avatar will be used
+# 取决于作者邮箱；若作者邮箱未设置，则使用本地头像
 enable = false
-# Gravatar host, default: "www.gravatar.com"
+# Gravatar 主机，默认为 "www.gravatar.com"
 host = "www.gravatar.com" # ["cravatar.cn", "gravatar.loli.net", ...]
 style = "" # ["", "mp", "identicon", "monsterid", "wavatar", "retro", "blank", "robohash"]
 
-# Back to top
+# 返回顶部
 [back_to_top]
 enable = true
-# whether to show the scroll percent indicator around the back to top button
+# 是否在返回顶部按钮周围显示滚动百分比指示器
 scrollpercent = false
 
-# Reading progress bar
+# 阅读进度条
 [reading_progress]
 enable = false
-# available values: ["left", "right"]
+# 可用值：["left", "right"]
 start = "left"
-# available values: ["top", "bottom"]
+# 可用值：["top", "bottom"]
 position = "top"
 reversed = false
 light = ""
 dark = ""
 height = "2px"
 
-# Progress bar in the top during page loading.
-# for more information: https://github.com/CodeByZach/pace
+# 页面加载期间顶部显示的进度条。
+# 更多信息请参见 https://github.com/CodeByZach/pace
 [pace]
 enable = false
-# all available colors:
+# 所有可用颜色：
 # ["black", "blue", "green", "orange", "pink", "purple", "red", "silver", "white", "yellow"]
 color = "blue"
-# all available themes:
+# 所有可用主题：
 # ["barber-shop", "big-counter", "bounce", "center-atom", "center-circle", "center-radar", "center-simple",
 # "corner-indicator", "fill-left", "flash", "flat-top", "loading-bar", "mac-osx", "material", "minimal"]
 theme = "minimal"
 
-# Global Feed config for RSS, Atom and JSON feed.
+# RSS、Atom 和 JSON Feed 的全局订阅配置。
 [feed]
-# the number of posts to include in the feed. If set to -1, all posts.
-limit = 10
-# whether to show the full text content in feed.
+# 订阅中包含的文章数量；若设为 -1，则包含全部文章。
+limit = 20
+# 是否在订阅中显示完整文本内容。
 full_text = true
 
-# Site Challenge for Follow: https://follow.is/
+# Follow 站点挑战：https://follow.is/
 [feed.follow]
 feed_id = ""
 user_id = ""
 
-# Taxonomy icons config
-# works with [taxonomies]. Configure [taxonomies] first, otherwise taxonomy icons will not take effect.
+# 分类法图标配置
+# 适用于 [taxonomies]；先配置 [taxonomies]，否则分类法图标不会生效。
 [taxonomy_icons]
-# syntax: <taxonomy> = [<title icon>, <card icon>, <term title icon>]
-# example:
+# 语法: <taxonomy> = [<title icon>, <card icon>, <term title icon>]
+# 示例：
 # topic = [
 #   "fa-solid fa-book-bookmark",
 #   "fa-solid fa-book",
 #   "fa-solid fa-book-open"
 # ]
 
-# Print config
+# 打印配置
 [print]
-# whether to expand all admonitions before printing
+# 是否在打印前展开所有警告框
 expand_admonition = true
-# whether to expand all code blocks and code tabs before printing
+# 是否在打印前展开所有代码块和代码标签
 expand_code = true
-# whether to expand all details elements before printing
+# 是否在打印前展开所有 details 元素
 expand_details = true
-# whether to expand all file trees before printing
-expand_file_tree = false
+# 是否在打印前展开所有文件树
+expand_file_tree = true
 
-# Custom partials config
-# custom partials must be stored in the /layouts/_partials/ directory.
-# depends on open custom blocks https://fixit.lruihao.cn/references/blocks/
+# 自定义局部模板配置
+# 自定义局部模板必须存放在 /layouts/_partials/ 目录下。
+# 依赖开放的自定义块 https://fixit.lruihao.cn/references/blocks/
 [custom_partials]
 head = []
 menu_desktop = []
@@ -1333,17 +1333,17 @@ post_content_after = []
 post_footer_before = []
 post_footer_after = []
 
-# SCSS variables customization via config
-# Leave empty to use the theme default value (defined in scss-vars.html).
-# Note: Color values must use hex format (e.g. "#ff0000"), CSS named colors (e.g. "red") are not supported.
+# 通过配置自定义 SCSS 变量
+# 留空以使用主题默认值（定义于 scss-vars.html）。
+# 注意：颜色值必须使用十六进制格式（例如 "#ff0000"），CSS 命名颜色（例如 "red"）不受支持。
 [appearance]
-# Global Typography
+# 全局排版
 global_font_family = ""
 global_font_size = ""
 global_font_weight = ""
 global_line_height = ""
 global_border_radius = ""
-# Global Colors
+# 全局颜色
 global_background_color = ""
 global_background_color_dark = ""
 global_font_color = ""
@@ -1356,13 +1356,13 @@ global_link_hover_color = ""
 global_link_hover_color_dark = ""
 global_border_color = ""
 global_border_color_dark = ""
-# Scrollbar
+# 滚动条
 scrollbar_color = ""
 scrollbar_hover_color = ""
-# Selection
+# 选择文本
 selection_color = ""
 selection_color_dark = ""
-# Header
+# 页头
 header_background_color = ""
 header_background_color_dark = ""
 header_title_font_size = ""
@@ -1373,12 +1373,12 @@ menu_border_color = ""
 menu_border_color_dark = ""
 search_background_color = ""
 search_background_color_dark = ""
-# Tag Cloud
+# 标签云
 tag_cloud_start = ""
 tag_cloud_start_dark = ""
 tag_cloud_end = ""
 tag_cloud_end_dark = ""
-# Single Content
+# 单篇内容
 toc_title_font_size = ""
 toc_content_font_size = ""
 collection_title_font_size = ""
@@ -1389,26 +1389,26 @@ single_link_color = ""
 single_link_color_dark = ""
 single_link_hover_color = ""
 single_link_hover_color_dark = ""
-# Table
+# 表格
 table_background_color = ""
 table_background_color_dark = ""
 table_thead_color = ""
 table_thead_color_dark = ""
 table_border_color = ""
 table_border_color_dark = ""
-# Blockquote
+# 引用块
 blockquote_color = ""
 blockquote_color_dark = ""
-# Reward
+# 打赏
 reward_color = ""
 reward_color_dark = ""
 reward_img_width = ""
-# Pagination
+# 分页
 pagination_link_color = ""
 pagination_link_color_dark = ""
 pagination_link_hover_color = ""
 pagination_link_hover_color_dark = ""
-# Code
+# 代码
 code_color = ""
 code_color_dark = ""
 code_font_family = ""
@@ -1429,10 +1429,10 @@ github_corner_color_dark = ""
 github_corner_fill = ""
 github_corner_fill_dark = ""
 
-# Developer options
-# select the scope named `public_repo` to generate personal access token,
-# configure with environment variable `HUGO_PARAMS_GHTOKEN=xxx`, see https://gohugo.io/functions/os/getenv/#examples
+# 开发者选项
+# 选择名为 `public_repo` 的作用域以生成个人访问令牌，
+# 通过环境变量 `HUGO_PARAMS_GHTOKEN=xxx` 配置，参见 https://gohugo.io/functions/os/getenv/#examples
 [dev]
 enable = false
-# check for updates
+# 检查更新
 c4u = false
