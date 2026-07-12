@@ -1,9 +1,12 @@
 ---
 title: 你好，世界！
 date: 2024-07-11
+modified: 2026-07-12
 categories: [文档]
 tags: [Hugo, markdown]
+draft: false
 ruby: true
+lightgallery: true
 expiration_reminder:
   enable: true
 math:
@@ -266,6 +269,7 @@ events:
 > 可在 `[]` 后方增加 `+` \\ `-` 控制警示块折叠。
 
 > [!EXAMPLE]+ 多种样式
+>
 > | 关键字    | 样式 |
 > | --------- | ---- |
 > | NOTE      | 笔记 |
@@ -281,7 +285,6 @@ events:
 > | ERROR     | 错误 |
 > | FAILURE   | 失败 |
 > | QUOTE     | 引用 |
-
 
 > [!ABSTRACT] 摘要
 
@@ -362,6 +365,10 @@ $$e^{i\theta} = \cos(\theta) + i\sin(\theta)$$
 ### 图表
 
 {{< figure src="/images/avatar.svg" title="图1.1 作者头像" >}}
+
+### 画廊
+
+![作者头像](/images/avatar.svg "作者头像")
 
 ### 二维码
 
