@@ -258,7 +258,7 @@ decrease_h1 = false
 
 # Display a message at the beginning of an article to warn the reader that its content might be expired.
 [expiration_reminder]
-enable = true
+enable = false
 # 如果最后修改时间超过 90 天，则显示提醒
 reminder = 180
 # 如果最后修改时间超过 180 天，则显示警告
