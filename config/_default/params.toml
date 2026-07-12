@@ -667,8 +667,8 @@ katex = false
 enable = true
 repo = "nek0x1a/nek0x1a.github.io"
 repo_id = "R_kgDOTVROkw"
-category = "Announcements"
-category_id = "DIC_kwDOTVROk84DA-ZN"
+category = "General"
+category_id = "DIC_kwDOTVROk84DA-ZO"
 mapping = "pathname"
 # Or set it to your self-hosted domain.
 origin = "https://giscus.app"
