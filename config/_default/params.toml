@@ -1246,7 +1246,7 @@ data_token = ""
 
 # Cookie consent configuration.
 [cookieconsent]
-enable = true
+enable = false
 
 # Text strings used for Cookie consent banner.
 [cookieconsent.content]
