@@ -498,7 +498,7 @@ Mix = false
 
 # Comment configuration.
 [comment]
-enable = false
+enable = true
 
 # Artalk comment configuration.
 # See: [Artalk](https://artalk.js.org/)
@@ -664,12 +664,12 @@ katex = false
 
 # Giscus comments configuration.
 [comment.giscus]
-enable = false
-repo = ""
-repo_id = ""
-category = ""
-category_id = ""
-mapping = ""
+enable = true
+repo = "nek0x1a/nek0x1a.github.io"
+repo_id = "R_kgDOTVROkw"
+category = "Announcements"
+category_id = "DIC_kwDOTVROk84DA-ZN"
+mapping = "pathname"
 # Or set it to your self-hosted domain.
 origin = "https://giscus.app"
 strict = "0"
@@ -1200,11 +1200,11 @@ logo_url = ""
 
 # Analytics configuration.
 [analytics]
-enable = false
+enable = true
 
 # Google Analytics.
 [analytics.google]
-id = ""
+id = "G-F6VDMBC3J6"
 # Whether to anonymize IP.
 anonymize_ip = true
 
@@ -1220,10 +1220,10 @@ id = ""
 
 # Umami Analytics.
 [analytics.umami]
-data_website_id = ""
-src = ""
-data_host_url = ""
-data_domains = ""
+data_website_id = "2c9ab2fe-56c6-4524-b4c0-fc3a6460f81d"
+src = "https://cloud.umami.is/script.js"
+data_host_url = "http://eroneko.eu.org"
+data_domains = "eroneko.eu.org"
 
 # Plausible Analytics.
 [analytics.plausible]
