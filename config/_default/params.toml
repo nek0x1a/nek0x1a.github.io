@@ -4,7 +4,7 @@
 #   1. Site-level params — apply to the entire site, can NOT be overridden per-page.
 #   2. Page-level params — can be overridden per-page via page front matter.
 #
-# See: https://fixit.lruihao.cn/documentation/basics/#theme-configuration
+# See: https://fixit.lruihao.cn/docs/getting-started/configuration/params/
 # -------------------------------------------------------------------------------------
 
 # FixIt theme version.
@@ -59,7 +59,7 @@ disable_theme_inject = false
 #     enable: false
 #   ---
 #
-# See: https://fixit.lruihao.cn/documentation/content-management/front-matter
+# See: https://fixit.lruihao.cn/docs/content-management/front-matter
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 # Whether to capitalize titles.
@@ -82,9 +82,9 @@ twemoji = false
 # Set to true, images in the content will be shown as the gallery if the image has a title, e.g. `![alt](src "title")`.
 # Set to "force", images in the content will be forced to shown as the gallery regardless of the image has a title or not, e.g. `![alt](src)`.
 lightgallery = false
-# 是否启用 ruby 扩展语法
-ruby = false
-# 是否启用 fraction 扩展语法
+# Whether to enable the ruby extended syntax.
+ruby = true
+# Whether to enable the fraction extended syntax.
 fraction = true
 # Whether to enable the fontawesome extended syntax.
 fontawesome = true
@@ -186,14 +186,14 @@ editable = false
 # JSON Viewer configuration.
 # See: [json-viewer-element](https://github.com/Lruihao/json-viewer-element)
 [json_viewer]
-enable = false
+enable = true
 expand_depth = 1
 copyable = true
 sort = false
 boxed = true
 
 # File tree configuration.
-# See: [File Tree](https://fixit.lruihao.cn/documentation/content-management/shortcodes/extended/file-tree/)
+# See: [File Tree](https://fixit.lruihao.cn/docs/content-management/shortcodes/extended/file-tree/)
 [filetree]
 # The expand level of the tree (expand all: -1, collapse all: 0).
 level = 1
@@ -205,7 +205,7 @@ ignore_list = []
 highlight_list = []
 
 # Mermaid configuration.
-# See: [Mermaid](http://fixit.lruihao.cn/documentation/content-management/diagrams-support/mermaid/)
+# See: [Mermaid](https://fixit.lruihao.cn/docs/content-management/diagrams-support/mermaid/)
 [mermaid]
 # Whether to enable the Mermaid wrapper.
 # When enabled, Mermaid diagrams are wrapped with diagram tabs and actions:
@@ -220,7 +220,10 @@ cdn = "https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.esm.min.mjs"
 # Example: `https://cdn.jsdelivr.net/npm/@mermaid-js/mermaid-zenuml/dist/mermaid-zenuml.esm.min.mjs`.
 zenuml = ""
 # For values, See: [Available Themes](https://mermaid.js.org/config/theming.html#available-themes).
-themes = ["default", "dark"]
+themes = [
+  "default",
+  "dark"
+]
 # The security level for Mermaid diagrams.
 # available values: ["strict", "loose", "antiscript", "sandbox"]
 security_level = "loose"
@@ -259,11 +262,11 @@ decrease_h1 = false
 # Display a message at the beginning of an article to warn the reader that its content might be expired.
 [expiration_reminder]
 enable = false
-# 如果最后修改时间超过 90 天，则显示提醒
-reminder = 180
-# 如果最后修改时间超过 180 天，则显示警告
-warning = 360
-# 若文章过期，是否关闭评论
+# Display the reminder if the last modified time is more than 90 days ago.
+reminder = 90
+# Display warning if the last modified time is more than 180 days ago.
+warning = 180
+# If the article expires, close the comment or not.
 close_comment = false
 
 # Page heading configuration.
@@ -287,10 +290,11 @@ h5 = "{h2}.{h3}.{h4}.{h5} {title}"
 h6 = "{h2}.{h3}.{h4}.{h5}.{h6} {title}"
 
 # Mathematical formulas configuration.
-# See: [Formula](http://fixit.lruihao.cn/documentation/content-management/markdown-syntax/extended/#formula)
+# See: [Formula](https://fixit.lruihao.cn/docs/content-management/markdown-syntax/extended/#formula)
 [math]
-enable = false
-# 数学公式渲染引擎，可选值：["katex", "mathjax"]
+enable = true
+# Mathematical formulas rendering engines.
+# available values: ["katex", "mathjax"]
 type = "katex"
 
 # KaTeX server-side rendering.
@@ -323,7 +327,7 @@ cdn = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 # MathJax loader configuration.
 # More loader config e.g source, dependencies, provides etc support.
 [math.mathjax.loader]
-load = ["ui/safe"]
+load = [ "ui/safe" ]
 
 [math.mathjax.loader.paths]
 # custom = "https://cdn.jsdelivr.net/gh/sonoisa/XyJax-v3@3.0.1/build/"
@@ -341,7 +345,7 @@ skip_html_tags = [
   "math",
   "select",
   "option",
-  "mjx-container",
+  "mjx-container"
 ]
 # Class that marks tags not to search.
 ignore_html_class = "mathjax_ignore"
@@ -372,7 +376,7 @@ fullscreen = true
 
 # PostChat AI configuration.
 # Based on your posts to build a knowledge base, support AI summary, AI search, and AI Chatbot.
-# See: [洪墨 AI](https://ai.zhheo.com/docs/)
+# See: [HongMoAI](https://ai.zhheo.com/docs/)
 # Get PostChat Key from my invitation link, thanks for your support!
 # https://ai.zhheo.com/console/login?InviteID=85041330
 [post_chat]
@@ -434,7 +438,10 @@ enable = false
 count = 5
 # Position of related content.
 # available values: ["aside", "footer"]
-position = ["aside", "footer"]
+position = [
+  "aside",
+  "footer"
+]
 
 # Donate (Sponsor) settings.
 [reward]
@@ -465,8 +472,8 @@ source = true
 edit = true
 # Whether to show link to report issue (requires git_info.repo).
 report = true
-# 打开编辑器协议（例如 "vscode"、"trae" 等），留空则禁用
-editor = ""
+# Open in editor protocol (e.g. "vscode", "trae" etc.), empty to disable.
+editor = "vscode"
 
 # Social share links in post page.
 [share]
@@ -498,7 +505,7 @@ Mix = false
 
 # Comment configuration.
 [comment]
-enable = true
+enable = false
 
 # Artalk comment configuration.
 # See: [Artalk](https://artalk.js.org/)
@@ -572,7 +579,11 @@ app_id = ""
 app_key = ""
 placeholder = ""
 avatar = "mp"
-meta = ['nick', 'mail', 'link']
+meta = [
+  'nick',
+  'mail',
+  'link'
+]
 required_fields = []
 page_size = 10
 lang = ""
@@ -595,8 +606,12 @@ comment_count = true
 enable = false
 server_url = ""
 pageview = false
-emoji = ["//unpkg.com/@waline/emojis@1.1.0/weibo"]
-meta = ["nick", "mail", "link"]
+emoji = [ "//unpkg.com/@waline/emojis@1.1.0/weibo" ]
+meta = [
+  "nick",
+  "mail",
+  "link"
+]
 required_meta = []
 login = "enable"
 word_limit = 0
@@ -664,12 +679,12 @@ katex = false
 
 # Giscus comments configuration.
 [comment.giscus]
-enable = true
-repo = "nek0x1a/nek0x1a.github.io"
-repo_id = "R_kgDOTVROkw"
-category = "General"
-category_id = "DIC_kwDOTVROk84DA-ZO"
-mapping = "pathname"
+enable = false
+repo = ""
+repo_id = ""
+category = ""
+category_id = ""
+mapping = ""
 # Or set it to your self-hosted domain.
 origin = "https://giscus.app"
 strict = "0"
@@ -703,8 +718,8 @@ lazy_load = true
 
 # Public Git repository information only then enableGitInfo is true.
 [git_info]
-# 例如 "https://github.com/hugo-fixit/docs"
-repo = "https://github.com/nek0x1a/nek0x1a.github.io"
+# Example: "https://github.com/hugo-fixit/docs".
+repo = ""
 branch = "main"
 # The content directory path relative to the root of the repository.
 dir = "content"
@@ -714,11 +729,11 @@ issue_tpl = "title=[BUG]%20{title}&body=|Field|Value|%0A|-|-|%0A|Title|{title}|%
 
 # App and PWA configuration.
 [app]
-# 是否启用 PWA 支持
-pwa = true
-# 用于主屏幕和 manifest 的应用名称（默认回退为站点标题）
+# Whether to enable PWA support.
+pwa = false
+# App name used for home screen and manifest (falls back to site title).
 name = ""
-# manifest 的可选短名称（默认回退为名称）
+# Optional short name for the manifest (falls back to name).
 short_name = ""
 # Whether to omit favicon resource links.
 no_favicon = false
@@ -1116,13 +1131,13 @@ duration = -1
 loop = false
 
 # Admonitions custom configuration.
-# See: [Custom Admonitions](https://fixit.lruihao.cn/documentation/content-management/shortcodes/extended/admonition/#custom-admonitions).
+# See: [Custom Admonitions](https://fixit.lruihao.cn/docs/advanced/#custom-admonitions).
 # syntax: `<type> = <icon>`
 [admonition]
 # ban = "fa-solid fa-ban"
 
 # Task lists custom configuration.
-# See: [Custom Task Lists](https://fixit.lruihao.cn/documentation/content-management/advanced/#custom-task-lists).
+# See: [Custom Task Lists](https://fixit.lruihao.cn/docs/advanced/#custom-task-lists).
 # syntax: `<sign> = <icon>`
 [task_list]
 # tip = "fa-regular fa-lightbulb"
@@ -1200,11 +1215,11 @@ logo_url = ""
 
 # Analytics configuration.
 [analytics]
-enable = true
+enable = false
 
 # Google Analytics.
 [analytics.google]
-id = "G-F6VDMBC3J6"
+id = ""
 # Whether to anonymize IP.
 anonymize_ip = true
 
@@ -1220,10 +1235,10 @@ id = ""
 
 # Umami Analytics.
 [analytics.umami]
-data_website_id = "2c9ab2fe-56c6-4524-b4c0-fc3a6460f81d"
-src = "https://cloud.umami.is/script.js"
-data_host_url = "http://eroneko.eu.org"
-data_domains = "eroneko.eu.org"
+data_website_id = ""
+src = ""
+data_host_url = ""
+data_domains = ""
 
 # Plausible Analytics.
 [analytics.plausible]
@@ -1246,7 +1261,7 @@ data_token = ""
 
 # Cookie consent configuration.
 [cookieconsent]
-enable = false
+enable = true
 
 # Text strings used for Cookie consent banner.
 [cookieconsent.content]

@@ -1,6 +1,6 @@
 # -------------------------------------------------------------------------------------
 # Menu Configuration
-# See: https://fixit.lruihao.cn/documentation/basics/#menu-configuration
+# See: https://fixit.lruihao.cn/docs/getting-started/configuration/#menu-configuration
 # -------------------------------------------------------------------------------------
 
 [[main]]
@@ -10,7 +10,7 @@ parent = ""
 pre = ""
 # You can add extra information after the name (HTML format is supported), such as icons.
 post = ""
-name = "归档"
+name = "Archives"
 url = "/archives/"
 # Title will be shown when you hover on this menu link.
 title = ""
@@ -35,7 +35,7 @@ identifier = "categories"
 parent = ""
 pre = ""
 post = ""
-name = "分类"
+name = "Categories"
 url = "/categories/"
 title = ""
 weight = 2
@@ -48,23 +48,10 @@ identifier = "tags"
 parent = ""
 pre = ""
 post = ""
-name = "标签"
+name = "Tags"
 url = "/tags/"
 title = ""
 weight = 3
 
 [main.params]
 icon = "fa-solid fa-tags"
-
-[[main]]
-identifier = "about"
-parent = ""
-pre = ""
-post = ""
-name = "喵"
-url = "/meow/"
-title = ""
-weight = 4
-
-[main.params]
-icon = "fa-solid fa-heart"
