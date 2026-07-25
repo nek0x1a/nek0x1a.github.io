@@ -1,3 +1,9 @@
 title = "猫的笔记本"
 baseURL = "https://eroneko.eu.org/"
 theme = ["FixIt"]
+
+
+defaultContentLanguage = "zh-cn"
+languageCode = "zh-CN"
+languageName = "简体中文"
+hasCJKLanguage = true

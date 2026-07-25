@@ -1,17 +1,82 @@
 description = "猫猫的记录"
 keywords = ["Hugo", "猫猫的博客", "计算机技巧", "二次元", "日常吐槽"]
 
+ruby = false
+
+
 [author]
 name = "猫猫"
 email = "neko@eroneko.eu.org"
 link = "https://github.com/nek0x1a"
 avatar = "/images/avatar.svg"
 
+[social]
+GitHub = "https://github.com/nek0x1a"
+Email = "neko@eroneko.eu.org"
+RSS = true
+
 [app]
+pwa = true
+svg_favicon = "/images/logo.svg"
 title = "猫的笔记本"
+
+[[app.icons]]
+src = "/images/logo-180.png"
+sizes = "180x180"
+type = "image/png"
+purpose = "any maskable"
+[[app.icons]]
+src = "/images/logo-192.png"
+sizes = "192x192"
+type = "image/png"
+[[app.icons]]
+src = "/images/logo-512.png"
+sizes = "512x512"
+type = "image/png"
 
 [header.title]
 logo = "/images/logo.svg"
 
 [home.profile]
 enable = true
+
+[json_viewer]
+enable = false
+
+[expiration_reminder]
+enable = false
+reminder = 180
+warning = 360
+
+[math]
+enable = false
+
+[post_link]
+editor = ""
+
+[comment]
+enable = true
+
+[comment.giscus]
+enable = true
+repo = "nek0x1a/nek0x1a.github.io"
+repo_id = "R_kgDOTVROkw"
+category = "Announcements"
+category_id = "DIC_kwDOTVROk84DA-ZN"
+mapping = "pathname"
+
+[git_info]
+repo = "https://github.com/nek0x1a/nek0x1a.github.io"
+
+[analytics]
+enable = true
+[analytics.google]
+id = "G-F6VDMBC3J6"
+[analytics.umami]
+data_website_id = "2c9ab2fe-56c6-4524-b4c0-fc3a6460f81d"
+src = "https://cloud.umami.is/script.js"
+data_host_url = "http://eroneko.eu.org"
+data_domains = "eroneko.eu.org"
+
+[cookieconsent]
+enable = false
