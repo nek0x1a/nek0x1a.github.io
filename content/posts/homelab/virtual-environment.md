@@ -2,7 +2,7 @@
 title: 搭建 Proxmox VE 虚拟环境
 date: 2023-03-24
 modified: 2025-07-13
-categories: [文档]
+categories: [家用服务器]
 tags: [ProxmoxVE, Linux]
 expirationReminder:
   enable: true

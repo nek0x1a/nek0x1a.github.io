@@ -18,13 +18,13 @@ UnTMDpack 可以通过 7z 批量解压文件，可以说完美符合经常下载
 
 由于嵌套解压会分析压缩包中的每个文件，而部分资源文件等不需要解压，但实际也是压缩包，为避免无意解压，建议解压完成后不要直接删除，并添加以下排除扩展名：
 
-```
+``` text
 doc,docx,docm,docz,dot,dotx,dotm,xls,xlsx,xlsm,xlsz,xlt,xltx,xltm,ppt,pptx,pptm,pptz,pot,potx,potm,wps,msg,odt,ods,odp,jar,jarx,war,xpi,msi,msix,cab,cabinet,deb,rpm,ipk,crx,apk,bar,xap,ipa,pkg,pk3,pk4,vpk,pak,zap,sav,save,iso,udf,mdf,mds,wim,img,bin,epub,apng,amz,xar,z,gz
 ```
 
 增加进行隐写检测的扩展名：
 
-```
+``` text
 MP4,WMV,MKV,JPG,PNG
 ```
 

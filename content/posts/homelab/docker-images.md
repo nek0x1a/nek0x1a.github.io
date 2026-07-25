@@ -2,7 +2,7 @@
 title: 优秀 Docker 镜像
 date: 2023-04-25
 modified: 2025-09-21
-categories: [文档]
+categories: [家用服务器]
 tags: [Docker, Linux]
 expirationReminder:
   enable: true

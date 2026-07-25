@@ -41,7 +41,6 @@ $regOptions | ForEach-Object { Set-ItemProperty @_ }
 - 标题栏高度：30px
 - 窗口边框：1px
 
-
 ![默认](https://assets.eroneko.eu.org/blog/osconfig/windows-window-border-01.webp)
 
 根据 Window Spy，消去窗体内容影响（设 client 的 x、y、w、h 为 0）后，Screen 的数值：

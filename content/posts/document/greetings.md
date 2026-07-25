@@ -245,6 +245,7 @@ events:
 
 > [!TIP]
 > 类型可选：
+>
 > - `NOTE`: 笔记
 > - `TIP`: 提示
 > - `IMPORTANT`: 重要
@@ -333,7 +334,6 @@ events:
 - 上标：2^10^ = 1024
 
 - emoji： :smiley_cat: [官方文档](https://fixit.lruihao.cn/zh-cn/guides/emoji-support/)
-
 
 ### LaTeX
 

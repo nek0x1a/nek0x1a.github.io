@@ -289,6 +289,7 @@ on a.bid=b.id;
 | a.bid 无         | 是      | -       |
 
 > [!TIP] 提示
+>
 > - JOIN 相当于表的横向连接
 > - UNION 相当于表的纵向连接
 > - UNION 在两表的字段没有相同时会报错，所以不要直接使用 `select * from a UNION select * from b`

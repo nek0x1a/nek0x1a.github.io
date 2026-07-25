@@ -2,7 +2,7 @@
 title: 搭建 Debian 虚拟服务器
 date: 2023-04-15
 modified: 2025-09-21
-categories: [文档]
+categories: [家用服务器]
 tags: [ProxmoxVE, Linux, Server, Debian]
 expirationReminder:
   enable: true
@@ -22,7 +22,7 @@ expirationReminder:
 
 选择 Debian 最新的 standard 模板即可。
 
-#### Debian 换源
+### Debian 换源
 
 ```bash
 tee /etc/apt/sources.list.d/debian.sources << EOF
@@ -41,14 +41,13 @@ Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
 EOF
 ```
 
-#### 更改时区
+### 更改时区
 
 ```bash
 timedatectl set-timezone Asia/Shanghai
 ```
 
-
-#### 安装基础软件
+### 安装基础软件
 
 安装基础软件和 `oh-my-zsh` 插件。
 
@@ -83,7 +82,6 @@ alias grep="rg"
 EOF
 source ~/.zshrc
 ```
-
 
 配置 vim：
 
@@ -131,8 +129,7 @@ git config --global core.autocrlf input
 git config --global core.safecrlf true
 ```
 
-
-#### 挂载 NFS
+### 挂载 NFS
 
 先创建本地空文件夹，之后在配置文件中将远程目录映射到目录中：
 
@@ -146,7 +143,6 @@ Debian 13 LXC 模板中启用了 `systemd-networkd-wait-online.service` 在挂�
 ```bash
 systemctl disabled systemd-networkd-wait-online.service
 ```
-
 
 ## 反代服务器
 
@@ -221,7 +217,7 @@ apt install fonts-noto-cjk-extra intel-media-va-driver-non-free vainfo intel-gpu
 vainfo
 ```
 
-### 安装 jellyfin：
+### 安装 jellyfin
 
 ```bash
 curl https://repo.jellyfin.org/install-debuntu.sh | bash

@@ -2,7 +2,7 @@
 title: 搭建基础网络环境
 date: 2022-12-15
 modified: 2025-07-13
-categories: [文档]
+categories: [家用服务器]
 tags: [Openwrt, VPN, Nginx]
 expirationReminder:
   enable: true
@@ -83,7 +83,6 @@ tar -C /overlay -cvf - . | tar -C /mnt/mmcblk0p6 -xf -
 - nginx-mod-luci
 
 安装 nginx-full 后，在 `系统` - `启动项` 中禁用 `uhttpd`、启用 `uwsgi` 和 `nginx`，重启 Openwrt。
-
 
 ## 配置桥接光猫静态路由
 
