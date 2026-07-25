@@ -1,7 +1,7 @@
 ---
 title: 优秀 Docker 镜像
 date: 2023-04-25
-modified: 2025-09-21
+modified: 2026-07-25
 categories: [家用服务器]
 tags: [Docker, Linux]
 expirationReminder:
@@ -14,40 +14,15 @@ expirationReminder:
 
 ## 数据架构
 
-| 挂载点  | 类型           | 用途                             |
-| ------- | -------------- | -------------------------------- |
-| /docker | ISCSI 远程硬盘 | Compose 配置、各容器的缓存及配置 |
-| /nfs/*  | NFS 挂载       | 资源文件，如下载、影视等         |
-
-## 端口分配
-
-| 端口 | 60: 管理及基础服务     | 62: 媒体          | 63: 下载                    |
-| ---- | ---------------------- | ----------------- | --------------------------- |
-| 00   | portainer/portainer-ce | diygod/rsshub     | estrellaxd/auto_bangumi     |
-| 01   | vaultwarden/server     | freshrss/freshrss | p3terx/ariang               |
-| 02   | sigoden/dufs           | deluan/navidrome  | p3terx/qbittorrent-enhanced |
-| 03   | adminer                | neosmemo/memos    | johngong/baidunetdisk       |
-
-以下容器使用默认端口：
-
-- mariadb - `3306`
-- postgres:alpine - `5432`
-- p3terx/aria2-pro - `6800`
+| 挂载点     | 类型   | 用途                             |
+| ---------- | ------ | -------------------------------- |
+| /container | 本地   | Compose 配置、各容器的缓存及配置 |
+| /proxmox   | 挂载点 | 资源文件，如下载、影视等         |
 
 ## Compose 文件
 
-```yaml {title="Base"}
+```yaml {title="base"}
 services:
-  portainer:
-    image: portainer/portainer-ce
-    container_name: portainer
-    restart: unless-stopped
-    ports:
-      - 6000:9000
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /container/portainer:/data
-
   vaultwarden:
     container_name: vaultwarden
     image: vaultwarden/server
@@ -57,8 +32,8 @@ services:
     volumes:
       - /container/vaultwarden:/data
     environment:
-      DOMAIN: "https://password.meow"
-
+      DOMAIN: https://password.meow
+      DATABASE_URL: ${VAULTWARDEN_DATABASE_URL}
   dufs-public:
     container_name: dufs-public
     image: sigoden/dufs
@@ -66,138 +41,181 @@ services:
     ports:
       - 6002:5000
     volumes:
-      - /nfs/public:/data
+      - /proxmox/public:/data
     command: /data
+```
 
-  adminer:
-    container_name: adminer
-    image: adminer
-    restart: unless-stopped
-    ports:
-      - 6003:8080
-
+```yaml {title="database"}
+services:
   postgres:
     container_name: postgres
-    image: postgres:alpine
+    image: postgres:18-alpine
     restart: unless-stopped
-    user: 1000:1000
     ports:
       - 5432:5432
     volumes:
-      - /container/postgresql:/var/lib/postgresql/data
+      - /container/postgres:/var/lib/postgresql
     environment:
-      - POSTGRES_PASSWORD: "Ero@Postgres"
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    ports:
+      - 6003:80
+    volumes:
+      - /container/pgadmin:/var/lib/pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
 ```
 
-```yaml {title="Rss"}
+```yaml {title="hasura"}
+services:
+  graphql-engine:
+    container_name: graphql-engine
+    image: hasura/graphql-engine
+    restart: unless-stopped
+    ports:
+      - 6005:8080
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: ${HASURA_GRAPHQL_DATABASE_URL}
+      HASURA_GRAPHQL_ENABLE_CONSOLE: true
+      HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}
+```
+
+```yaml {title="flaresolverr"}
+services:
+  flaresolverr:
+    container_name: flaresolverr
+    image: ghcr.io/flaresolverr/flaresolverr
+    restart: unless-stopped
+    ports:
+      - 6004:8191
+    environment:
+      - LOG_LEVEL=info
+```
+
+```yaml {title="rss"}
 services:
   rsshub:
     container_name: rsshub
     image: diygod/rsshub
     restart: unless-stopped
     ports:
-      - 6200:1200
+      - 6100:1200
     environment:
-      - ALLOW_ORIGIN: "*"
-      - ALLOW_USER_HOTLINK_TEMPLATE: "image_hotlink_template"
-
+      ALLOW_ORIGIN: "*"
+      ALLOW_USER_HOTLINK_TEMPLATE: image_hotlink_template
   freshrss:
     container_name: freshrss
     image: freshrss/freshrss
     restart: unless-stopped
     ports:
-      - 6201:80
+      - 6101:80
     depends_on:
       - rsshub
     logging:
       options:
         max-size: 10m
     volumes:
-      - /container/freshrss:/var/www/FreshRSS
+      - /container/freshrss/data:/var/www/FreshRSS/data
+      - /container/freshrss/extensions:/var/www/FreshRSS/extensions
     environment:
-      TZ: "Asia/Shanghai"
-      CRON_MIN: "1,31"
-      TRUSTED_PROXY: "172.16.0.1/12 10.0.0.0/8 192.168.0.0/16"
+      TZ: Asia/Shanghai
+      CRON_MIN: 1,31
+      TRUSTED_PROXY: 172.16.0.1/12 10.0.0.0/24 192.168.0.0/16
       FRESHRSS_INSTALL: |-
         --api-enabled
-        --base-url rss.meow
+        --base-url https://rss.meow
         --db-base freshrss
-        --db-host 10.0.0.32
-        --db-password freshrss@Postgres
+        --db-host ${FRESSRSS_DB_HOST}
+        --db-password ${FRESSRSS_DB_PASSWORD}
         --db-type pgsql
         --db-user freshrss
-        --default-user neko
+        --default-user ${FRESSRSS_DB_USER}
         --language zh-CN
       FRESHRSS_USER: |-
         --user neko
-        --api-password Ero@Freshrss
-        --email neko@meow
+        --api-password ${FRESSRSS_API_KEY}
+        --email ${FRESSRSS_USER}
         --language zh-CN
-        --password Ero@Freshrss
+        --password ${FRESSRSS_PASSWORD}
 ```
 
-```yaml {title="Media"}
+```yaml {title="media"}
 services:
+  memos:
+    container_name: memos
+    image: neosmemo/memos:stable
+    restart: unless-stopped
+    ports:
+      - 6102:5230
+    volumes:
+      - /container/memos:/var/opt/memos
   navidrome:
     container_name: navidrome
     image: deluan/navidrome
     restart: unless-stopped
     ports:
-      - 6202:4533
+      - 6103:4533
     volumes:
       - /container/navidrome:/data
-      - /nfs/music:/music:ro
+      - /proxmox/music:/music:ro
     environment:
       ND_SCANSCHEDULE: 12h
       ND_LOGLEVEL: info
-
-  siyuan:
-    container_name: siyuan
-    image: apkdv/siyuan-unlock
-    restart: unless-stopped
-    ports:
-      - 6203:6806
-    volumes:
-      - /container/siyuan:/siyuan/workspace
-    environment:
-      - PUID: 1000
-      - PGID: 1000
-      - LANG: zh_CN.UTF-8
-      - LC_ALL: zh_CN.UTF-8
-      - TZ: Asia/Shanghai
-      - SIYUAN_ACCESS_AUTH_CODE: Ero@Siyuan
-    command: --workspace=/siyuan/workspace/
-
   openlist:
     container_name: openlist
     image: openlistteam/openlist
     restart: unless-stopped
-    user: 1000:1000
+    ports:
+      - 6104:5244
     volumes:
       - /container/openlist:/opt/openlist/data
     environment:
-      - UMASK: 022
-      - TZ: Asia/Shanghai
+      UMASK: 22
+      TZ: Asia/Shanghai
+      DB_TYPE: postgres
+      DB_DSN: ${OPENLIST_DB_DSN}
 ```
 
-```yaml {title="Downloader"}
+```yaml {title="komga"}
+services:
+  komga:
+    container_name: komga
+    image: gotson/komga
+    restart: unless-stopped
+    volumes:
+      - /container/komga:/config
+      - /proxmox/comic:/data
+    ports:
+      - 6106:25600
+    user: 0:0
+    environment:
+      TZ: Asia/Shanghai
+```
+
+```yaml {title="download"}
 services:
   autobangumi:
     container_name: autobangumi
     image: estrellaxd/auto_bangumi
     restart: unless-stopped
     ports:
-      - 6300:7892
+      - 6200:7892
     volumes:
-      - /container/autobangumi:/app
+      - /container/autobangumi/config:/app/config
+      - /container/autobangumi/data:/app/data
     depends_on:
       - qbittorrent
     environment:
-      - PUID: 1000
-      - PGID: 1000
-      - TZ: Asia/Shanghai
-      - UMASK: 022
-
+      PUID: 0
+      PGID: 0
+      TZ: Asia/Shanghai
+      UMASK: 22
   aria2:
     container_name: aria2
     image: p3terx/aria2-pro
@@ -208,29 +226,28 @@ services:
       - 6888:6888/udp
     volumes:
       - /container/aria2:/config
-      - /nfs/downloads:/downloads
+      - /proxmox/downloads:/downloads
     environment:
-      - PUID: 1000
-      - PGID: 1000
-      - UMASK_SET: 022
-      - RPC_SECRET: 123456
-      - RPC_PORT: 6800
-      - LISTEN_PORT: 6888
-      - DISK_CACHE: 64M
-      - IPV6_MODE: true
-      - UPDATE_TRACKERS: true
-      - TZ: Asia/Shanghai
+      PUID: 0
+      PGID: 0
+      UMASK_SET: 22
+      RPC_SECRET: ${ARIA2_RPC_SECRET}
+      RPC_PORT: 6800
+      LISTEN_PORT: 6888
+      DISK_CACHE: 64M
+      IPV6_MODE: true
+      UPDATE_TRACKERS: true
+      TZ: Asia/Shanghai
     logging:
       driver: json-file
       options:
         max-size: 1m
-
   ariang:
     container_name: ariang
     image: p3terx/ariang
     restart: unless-stopped
     ports:
-      - 6301:6880
+      - 6201:6880
     depends_on:
       - aria2
     command: --port 6880 --ipv6
@@ -238,39 +255,78 @@ services:
       driver: json-file
       options:
         max-size: 1m
-
   qbittorrent:
     container_name: qbittorrent
     image: johngong/qbittorrent
     restart: unless-stopped
     ports:
-      - 6302:8989
+      - 6202:8989
       - 6881:6881
       - 6881:6881/udp
     volumes:
       - /container/qbittorrent:/config
-      - /nfs/downloads:/Downloads
-      - /nfs/bangumi:/Bangumi
+      - /proxmox/downloads:/Downloads
+      - /proxmox/bangumi:/Bangumi
     environment:
-      - UID: 1000
-      - GID: 1000
-      - TZ: Asia/Shanghai
-      - QB_WEBUI_PORT: 8989
-      - QB_EE_BIN: false
+      UID: 0
+      GID: 0
+      ENABLE_CHOWN_DOWNLOADS: false
+      ENABLE_CHOWN_R_DOWNLOADS: false
+      TZ: Asia/Shanghai
+      QB_WEBUI_PORT: 8989
 ```
 
 ```yaml {title="Baidu"}
 services:
   baidunetdisk:
-    container_name: baidunetdisk
+    container_name: baiduyun
     image: johngong/baidunetdisk
     restart: unless-stopped
     ports:
-      - 6303:5800
+      - 6203:5800
     volumes:
-      - /container/config:/config
-      - /nfs/downloads:/downloads
+      - /container/baiduyun:/config
+      - /proxmox/downloads:/downloads
     environment:
-      - USER_ID=1000
-      - GROUP_ID=1000
+      USER_ID: 0
+      GROUP_ID: 0
+```
+
+```yaml {title="newapi"}
+services:
+  newapi:
+    container_name: newapi
+    image: calciumion/new-api
+    restart: unless-stopped
+    command: --log-dir /app/logs
+    ports:
+      - 6006:3000
+    volumes:
+      - /container/newapi/data:/data
+      - /container/newapi/logs:/app/logs
+    environment:
+      SQL_DSN: ${NEWAPI_SQL_DSN}
+      REDIS_CONN_STRING: redis://:${REDIS_PASS}@redis
+      TZ: Asia/Shanghai
+      ERROR_LOG_ENABLED: true
+      BATCH_UPDATE_ENABLED: true
+      NODE_NAME: new-api-node-1
+    depends_on:
+      - redis
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - wget -q -O - http://localhost:3000/api/status | grep -o
+          '"success":\s*true' || exit 1
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  redis:
+    container_name: redis
+    image: redis
+    restart: unless-stopped
+    command:
+      - redis-server
+      - --requirepass
+      - ${REDIS_PASS}
 ```

@@ -1,7 +1,7 @@
 ---
 title: 搭建 Debian 虚拟服务器
 date: 2023-04-15
-modified: 2025-09-21
+modified: 2026-07-25
 categories: [家用服务器]
 tags: [ProxmoxVE, Linux, Server, Debian]
 expirationReminder:
@@ -20,12 +20,12 @@ expirationReminder:
 
 ## LXC 容器初始化
 
-选择 Debian 最新的 standard 模板即可。
+选择 Debian 最新的 standard 模板。
 
 ### Debian 换源
 
 ```bash
-tee /etc/apt/sources.list.d/debian.sources << EOF
+tee /etc/apt/sources.list.d/debian.sources <<EOF
 Types: deb
 URIs: http://mirrors.ustc.edu.cn/debian
 Suites: trixie trixie-updates
@@ -41,10 +41,47 @@ Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
 EOF
 ```
 
-### 更改时区
+### 更改语言和时区
 
 ```bash
+# 语言需要选择 en_US.UTF-8 并设置默认
+dpkg-reconfigure locales
+# 时区选择北京时间
 timedatectl set-timezone Asia/Shanghai
+```
+
+### 用户管理
+
+#### 添加用户组
+
+```bash
+groupadd -g 1000 trusted
+```
+
+#### 添加用户
+
+若不使用 `-g` 指定主要组，则会创建与用户同名的组。
+
+```bash
+useradd -s /bin/zsh -g trusted -u 1000 neko
+```
+
+#### 添加到组
+
+```bash
+usermod -aG wheel neko
+```
+
+#### 修改 Shell
+
+```bash
+chsh -s /bin/zsh neko
+```
+
+#### 删除用户
+
+```bash
+userdel -r neko
 ```
 
 ### 安装基础软件
@@ -53,7 +90,7 @@ timedatectl set-timezone Asia/Shanghai
 
 ```bash
 apt update && apt upgrade
-apt install vim git zsh curl nfs-common lsd bat fd-find ripgrep fzf -y
+apt install vim git zsh curl nfs-common lsd bat fd-find ripgrep fzf tmux -y
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
@@ -69,7 +106,13 @@ sed -i 's#ZSH_THEME=\"robbyrussell\"#ZSH_THEME=\"powerlevel10k\/powerlevel10k\"#
 sed -i 's#plugins=(git)#plugins=(git z sudo extract fzf zsh-autosuggestions zsh-syntax-highlighting)#g' ~/.zshrc
 sed -i 's/# HIST_STAMPS="mm\/dd\/yyyy"/HIST_STAMPS="yyyy-mm-dd"/g' ~/.zshrc
 
-tee -a ~/.zshrc << EOF
+git clone https://github.com/gpakosz/.tmux.git ~/.tmux
+ln -s -f .tmux/.tmux.conf ~/.tmux.conf
+cp .tmux/.tmux.conf.local ~
+sed -i '1i\if [[ -z "$TMUX" ]] && [[ -n "$SSH_CONNECTION" ]]; then\n    tmux new -A -s default\nfi\n' ~/.zshrc
+sed -i 's/#set -g mouse on/set -g mouse on/g' ~/.tmux.conf.local
+
+tee -a ~/.zshrc <<EOF
 alias ls="lsd"
 alias ll="lsd -l"
 alias la="lsd -al"
@@ -86,7 +129,7 @@ source ~/.zshrc
 配置 vim：
 
 ```bash
-tee -a /etc/vim/vimrc << EOF
+tee -a /etc/vim/vimrc <<EOF
 set encoding=utf-8
 set nocompatible
 set mouse=a
@@ -126,43 +169,22 @@ EOF
 ```bash
 git config --global init.defaultbranch main
 git config --global core.autocrlf input
-git config --global core.safecrlf true
 ```
 
-### 挂载 NFS
-
-先创建本地空文件夹，之后在配置文件中将远程目录映射到目录中：
-
-```test title="/etc/fstab"
-# <file system>             <mount point> <type> <options>                                                          <dump> <pass>
-${remotehost}:${remotepath} ${localpath}  nfs4    vers=4,minorversion=2,rw,noatime,hard,timeo=150,retrans=3,_netdev 0      0
-```
-
-Debian 13 LXC 模板中启用了 `systemd-networkd-wait-online.service` 在挂载了 nfs 的情况下在启动阶段将会等待网络配置，造成卡住。可使用以下命令禁用：
+配置 lsd:
 
 ```bash
-systemctl disabled systemd-networkd-wait-online.service
+mkdir -p ~/.config/lsd
+tee -a ~/.config/lsd/config.yaml <<EOF
+date: '+%Y-%m-%d %H:%M:%S'
+
+EOF
 ```
 
 ## 反代服务器
 
 ```bash
 apt install caddy
-```
-
-## Git 服务器
-
-配置 Git：
-
-```bash
-git config --global --add safe.directory '*'
-```
-
-远程测试创建拉取仓库：
-
-```bash
-ssh gitsvr git init --bare repository/test.git
-git clone gitsvr:repository/test
 ```
 
 ## Jellyfin 服务器
@@ -223,13 +245,25 @@ vainfo
 curl https://repo.jellyfin.org/install-debuntu.sh | bash
 ```
 
-## Podman 服务器
+## Contianer 服务器
+
+### 安装 Docker
 
 ```bash
-apt install podman
+apt update
+apt install ca-certificates curl
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://mirrors.ustc.edu.cn/docker-ce/linux/debian \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt update
+apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-### docker 镜像国内源
+### Docker 镜像国内源
 
 ```bash
 tee -a /etc/containers/registries.conf <<EOF

@@ -1,8 +1,8 @@
 ---
 title: 通过 VHDX 管理系统
 date: 2024-12-21
-modified: 2025-07-14
-categories: [文档]
+modified: 2026-07-25
+categories: [系统配置]
 tags: [Hyper-V, Windows]
 expirationReminder:
   enable: true
@@ -25,19 +25,18 @@ block-beta
 
 ## 将系统安装到 VHD
 
-使用 **bootice** 创建一个动态 VHDX，挂载到电脑中，然后使用 **Dism++** 释放镜像到 VHDX 中，将该 VHDX 命名为 **`BASE`**。
+使用 **bootice** 创建一个动态 VHDX，挂载到电脑中，然后使用 **Dism++** 释放镜像到 VHDX 中，将该 VHDX 命名为 **`Windows_11_Base`**。
 
 > [!WARNING] 关于创建 VHDX
 > 使用 **磁盘管理** 创建的 VHDX 在第二次启动时必定会无法启动，原因未知。
 > 使用 **bootice** 创建的则没有这个情况。
 
-添加 `BASE` 的引导项，进入系统进行以下操作：
+添加 `Windows_11_Base` 的引导项，进入系统进行以下操作：
 
 - 系统更新到最新后暂停更新
 - 安装必要软件
   - WinGet
   - PowerShell 7
-  - Terminal
   - 运行库等
 - 关闭功能
   - VBS
@@ -84,12 +83,12 @@ block-beta
 - 禁用虚拟化安全
 - 检查 Defender 是否存在
 
-
 ## 安装基础软件及设置系统
 
-安装的基础软件 Winget 列表如下：
+安装的运行库列表如下：
 
 > [!example]- 基础软件 Winget 列表
+>
 > - Microsoft.VCRedist.2005.x86
 > - Microsoft.VCRedist.2005.x64
 > - Microsoft.VCRedist.2008.x86
@@ -108,36 +107,44 @@ block-beta
 > - Microsoft.DotNet.Runtime.7
 > - Microsoft.DotNet.Runtime.8
 > - Microsoft.DotNet.Runtime.9
+> - Microsoft.DotNet.Runtime.10
 > - Microsoft.DotNet.DesktopRuntime.3_1
 > - Microsoft.DotNet.DesktopRuntime.5
 > - Microsoft.DotNet.DesktopRuntime.6
 > - Microsoft.DotNet.DesktopRuntime.7
 > - Microsoft.DotNet.DesktopRuntime.8
 > - Microsoft.DotNet.DesktopRuntime.9
+> - Microsoft.DotNet.DesktopRuntime.10
 > - Microsoft.DotNet.AspNetCore.3_1
 > - Microsoft.DotNet.AspNetCore.5
 > - Microsoft.DotNet.AspNetCore.6
 > - Microsoft.DotNet.AspNetCore.7
 > - Microsoft.DotNet.AspNetCore.8
 > - Microsoft.DotNet.AspNetCore.9
+> - Microsoft.DotNet.AspNetCore.10
 > - Microsoft.PowerShell
-> - Microsoft.WindowsTerminal
 > - Microsoft.XNARedist
 > - Oracle.JavaRuntimeEnvironment
-> - AutoHotkey.AutoHotkey
-> - CodecGuide.K-LiteCodecPack.Full
-> - zufuliu.notepad4.AVX2
-> - MacType.MacType
+
+安装的基础软件列表如下：
+
+> [!example]- 基础软件 Winget 列表
+>
 > - Gyan.FFmpeg
+> - CodecGuide.K-LiteCodecPack.Full
+> - Alacritty.Alacritty
+> - AutoHotkey.AutoHotkey
 > - voidtools.Everything
 > - Git.Git
-> - 7zip.7zip
-> - PixPin.PixPin
-> - Flow-Launcher.Flow-Launcher
+> - mcmilk.7zip-zstd
 > - BluePointLilac.ContextMenuManager
 
 ### 其他绿色软件
 
+- Clibor: 剪贴板
+- FlowLauncher: 启动器
+- Notepad4: 替换系统笔记本
+- PixPin: 截图
 - DirectoryOpus: 替换资源管理器
 - Foobar2000: 作为默认音频播放器
 - GoogleChrome: 作为默认浏览器
@@ -147,23 +154,23 @@ block-beta
 
 ## 清理系统
 
-完成基础设置后进行清理，可使用 **CCleaner** 和 **Dism++** 进行清理。
+完成基础设置后进行清理，可使用 **FluentCleaner** 和 **Dism++** 进行清理。
 
-后续 `BASE` 将作为母版，非特殊情况不再改动此镜像。
+后续 `Windows_11_Base` 将作为母版，非特殊情况不再改动此镜像。
 
 ## 创建差分 VHDX
 
-新建一个 VHDX 链接到 `BASE`，命名为 **`CURRENT`** 添加到启动项作为日常使用。
+新建一个 VHDX 链接到 `Windows_11_Base`，命名为 **`Windows_11_Current`** 添加到启动项作为日常使用。
 
-需要登陆使用或更新频繁的软件则在生成 `CURRENT` 后安装。由于猫猫使用的便携软件较多，大多数软件可以在生成 `CURRENT` 后复制快捷方式到开始菜单即可。
+需要登陆使用或更新频繁的软件则在生成 `Windows_11_Current` 后安装。由于猫猫使用的便携软件较多，大多数软件可以在生成 `Windows_11_Current` 后复制快捷方式到开始菜单即可。
 
 依赖关系：
 
 ```mermaid
 classDiagram
-    BASE <|-- CURRENT
-    Disk <|-- CURRENT
-    class BASE{
+    Windows_11_Base <|-- Windows_11_Current
+    Windows_11_Base <|-- Windows_11_Current
+    class Windows_11_Base{
       正确设置
       基础软件
       update()
@@ -172,24 +179,24 @@ classDiagram
       绿色软件
       init()
     }
-    class CURRENT{
+    class Windows_11_Current{
       +尝试更新配置
       +未信任软件
       +recreate()
     }
 ```
 
-PE 环境中重新创建 `CURRENT` 链接：
+PE 环境中重新创建 `Windows_11_Current` 链接：
 
 ```bat
 @echo off
 cd /d %~dp0
-echo Create new 'CURRENT.VHDX'?
+
+echo Create new 'Windows_11_Current.vhdx'?
 pause
-if exist ".\CURRENT.VHDX" (
-  del ".\CURRENT.VHDX"
-)
-start /wait diskpart /s .\Data\CreateSubVHD
+del ".\Windows_11_Current.vhdx"
+start /wait diskpart /s .\Data\CreateSubVhd
+
 echo "Finish!"
 pause
 ```
@@ -197,11 +204,11 @@ pause
 所需的 Diskpart 脚本文件 `.\Data\CreateSubVHD` 如下，其中 `C:\SYSTEM\` 为 VHDX 所在文件夹的绝对路径：
 
 ```bat
-select vdisk file="C:\SYSTEM\BASE.VHDX"
+select vdisk file="C:\SYSTEM\Windows_11_Base.vhdx"
 attach vdisk readonly
 compact vdisk
 detach vdisk
-create vdisk file="C:\SYSTEM\CURRENT.VHDX" parent="C:\SYSTEM\BASE.VHDX"
+create vdisk file="C:\SYSTEM\Windows_11_Current.vhdx" parent="C:\SYSTEM\Windows_11_Base.vhdx"
 ```
 
-今后每几个月进入 `BASE` 升级系统和基础软件，重新生成 `CURRENT` 链接，就相当于重装系统了。
+今后每几个月进入 `BAWindows_11_BaseSE` 升级系统和基础软件，重新生成 `Windows_11_Current` 链接，就相当于重装系统了。
